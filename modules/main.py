@@ -49,11 +49,11 @@ class Main(QtCore.QObject):
             id = m[row][0]
 
         match_of_users = self.data_handler.get_matches(id)
-        text = "{} - {}".format(self.data_handler.get_users(match_of_users[self.main.lViewMatches.currentRow()][1])[0][0], \
+        text = u"{} - {}".format(self.data_handler.get_users(match_of_users[self.main.lViewMatches.currentRow()][1])[0][0], \
          self.data_handler.get_users(match_of_users[self.main.lViewMatches.currentRow()][2])[0][0])
         self.main.lblInfo1.setText(text)
         if id:
-            self.main.lblInfo2.setText("Tordifferenz von {}: {:+}".format(self.data_handler.get_users(id)[0][0], self.data_handler.get_diff(id)))
+            self.main.lblInfo2.setText(u"Tordifferenz von {}: {:+}".format(self.data_handler.get_users(id)[0][0], self.data_handler.get_diff(id)))
             #ToDo: get_fav_team, output is not very useful
             #self.main.lblInfo3.setText("Bestes Team: {}".format(self.data_handler.get_fav_team(id)))
 
