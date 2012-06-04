@@ -36,6 +36,7 @@ class Datahandler(object):
     def delete_user(self, id):
         c = self.connection.cursor()
         c.execute("delete from users where id=?", (id, ))
+        c.execute("delete from matches where pid1=? or pid2=?", (id, id, ))
         self.connection.commit()
         c.close()
 

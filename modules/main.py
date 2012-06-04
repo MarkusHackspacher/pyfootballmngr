@@ -29,6 +29,7 @@ class Main(QtCore.QObject):
         self.main.actionAdd_Match.triggered.connect(self.new_match)
         self.connect(self.main.actionUpdate_Match, QtCore.SIGNAL('triggered()'), self.update_match)
         self.main.actionRemove_Match.triggered.connect(self.delete_match)
+        self.connect(self.main.actionExampleData, QtCore.SIGNAL('triggered()'), self.onExampleData)
         self.connect(self.main.actionAbout, QtCore.SIGNAL('triggered()'), self.onInfo)
         self.main.actionExit.triggered.connect(self.exit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
@@ -155,6 +156,22 @@ class Main(QtCore.QObject):
         self.data_handler.delete_match(match_of_users[self.main.lViewMatches.currentRow()][0])
 
         self.update_main_matches(id)
+
+    def onExampleData(self):
+        """ Load Example Data
+        """
+        self.data_handler.insert_user("Patrick")
+        self.data_handler.insert_user("Max")
+        self.data_handler.insert_user(u"Bärbel")
+        self.data_handler.insert_user("Janis")
+        self.data_handler.insert_user("Jessy")
+        self.data_handler.insert_match(1, 3, "Bayern", "Dortmund", 1, 0, "08,11,2002")
+        self.data_handler.insert_match(2, 5, "Hamburg", "Freiburg", 2, 2, "09,07,2010")
+        self.data_handler.insert_match(4, 3, "Dortmund", "Stuttgart", 1, 4, "24,01,2008")
+        self.data_handler.insert_match(3, 5, "Lautern", "Berlin", 0, 2, "15,06,2011")
+        self.data_handler.insert_match(5, 1, "Frankfurt", "Hoffenheim", 4, 4, "01,12,2001")        
+        self.data_handler.insert_match(4, 2, u"1860 München", "Hoffenheim", 0, 2, "01,12,2005")        
+        self.update_main_users()
         
     def onInfo(self):
         """ Programm Info

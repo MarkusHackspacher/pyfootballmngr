@@ -98,6 +98,7 @@ class WndMain(QtGui.QMainWindow):
         self.actionAdd_Match = QtGui.QAction(self)
         self.actionUpdate_Match = QtGui.QAction(self)
         self.actionRemove_Match = QtGui.QAction(self)
+        self.actionExampleData = QtGui.QAction(self)
         self.actionAbout = QtGui.QAction(self)
         self.actionExit = QtGui.QAction(self)
 
@@ -111,6 +112,8 @@ class WndMain(QtGui.QMainWindow):
         self.menuFile.addAction(self.actionAdd_Match)
         self.menuFile.addAction(self.actionUpdate_Match)
         self.menuFile.addAction(self.actionRemove_Match)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionExampleData)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionAbout)
         self.menuFile.addAction(self.actionExit)
@@ -130,6 +133,7 @@ class WndMain(QtGui.QMainWindow):
         self.actionUpdate_Match.setText("Update match")
         self.actionUpdate_Match.setEnabled(False) #ToDo
         self.actionRemove_Match.setText("Remove match")
+        self.actionExampleData.setText("Load example data")
         self.actionAbout.setText("About")
         self.actionExit.setText("Exit")
 
