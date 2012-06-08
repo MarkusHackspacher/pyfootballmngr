@@ -66,7 +66,7 @@ class WndMain(QtGui.QMainWindow):
         self.lViewMatches = QtGui.QListWidget(self.gbLastMatches)
 
         self.verticalLayout_3.addWidget(self.lViewMatches)
-        self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 2)
         self.gbPlayerInfo = QtGui.QGroupBox(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
@@ -84,7 +84,7 @@ class WndMain(QtGui.QMainWindow):
         self.verticalLayout.addWidget(self.lblInfo2)
         self.verticalLayout.addWidget(self.lblInfo3)
 
-        self.gridLayout.addWidget(self.gbPlayerInfo, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.gbPlayerInfo, 1, 1, 1, 2)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.setCentralWidget(self.centralwidget)
 
