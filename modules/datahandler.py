@@ -29,7 +29,7 @@ class Datahandler(object):
         if last:
             c.execute("update users set name=?, last=? where id=?", ( name, last, id, ))
         else:
-            c.execute("UPDATE users SET name=? WHERE id=?", ( name, id, ))
+            c.execute("update users set name=? where id=?", ( name, id, ))
         self.connection.commit()
         c.close()
 
@@ -62,6 +62,12 @@ class Datahandler(object):
     def insert_match(self, id1, id2, team1, team2, goals1, goals2, date):
         c = self.connection.cursor()
         c.execute("insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)", (id1, id2, team1, team2, goals1, goals2, date))
+        self.connection.commit()
+        c.close()
+
+    def update_match(self, id, id1, id2, team1, team2, goals1, goals2, date):
+        c = self.connection.cursor()
+        c.execute("update matches set pid1=?, pid2=?, team1=?, team2=?, goals1=?, goals2=?, date=? where id=?", (id1, id2, team1, team2, goals1, goals2, date, id))
         self.connection.commit()
         c.close()
 

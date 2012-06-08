@@ -5,6 +5,7 @@ from gui.main_window import WndMain
 from gui.dialogs.new_player import DlgNewPlayer
 from gui.dialogs.update_player import DlgUpdatePlayer
 from gui.dialogs.new_match import DlgNewMatch
+from gui.dialogs.update_match import DlgUpdateMatch
 from datahandler import Datahandler
 
 class Main(QtCore.QObject):
@@ -138,9 +139,31 @@ class Main(QtCore.QObject):
         self.update_main_matches()
         
     def update_match(self):
-        """Todo: update a new match           
+        """Todo: update a match           
         """
-        done
+        try:
+            m = self.main.tViewPlayers.model().data
+            row = self.main.tViewPlayers.selectionModel().selectedIndexes()[0].row()
+        except Exception:  
+            id = None 
+        else:
+            id = m[row][0]
+        match_of_users = self.data_handler.get_matches(id)
+        dlg = DlgUpdateMatch(self.data_handler.get_users(),
+         match_of_users[self.main.lViewMatches.currentRow()][1], 
+         match_of_users[self.main.lViewMatches.currentRow()][2],
+         match_of_users[self.main.lViewMatches.currentRow()][3],
+         match_of_users[self.main.lViewMatches.currentRow()][4],
+         match_of_users[self.main.lViewMatches.currentRow()][5],
+         match_of_users[self.main.lViewMatches.currentRow()][6],
+         match_of_users[self.main.lViewMatches.currentRow()][7])
+
+        if dlg.exec_():
+            id1, id2, team1, team2, goals1, goals2, date = dlg.getValues()
+            self.data_handler.update_match(match_of_users[self.main.lViewMatches.currentRow()][0], id1, id2, team1, team2, goals1, goals2, date)
+                
+        self.update_main_matches(id)
+       
 
     def delete_match(self):
         """delete a match

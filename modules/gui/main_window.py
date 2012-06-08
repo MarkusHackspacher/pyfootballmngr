@@ -131,7 +131,6 @@ class WndMain(QtGui.QMainWindow):
         self.actionRemove_Player.setText("Remove player")
         self.actionAdd_Match.setText("Add match")
         self.actionUpdate_Match.setText("Update match")
-        self.actionUpdate_Match.setEnabled(False) #ToDo
         self.actionRemove_Match.setText("Remove match")
         self.actionExampleData.setText("Load example data")
         self.actionAbout.setText("About")
