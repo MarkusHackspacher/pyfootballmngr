@@ -188,12 +188,12 @@ class Main(QtCore.QObject):
         self.data_handler.insert_user(u"Bärbel")
         self.data_handler.insert_user("Janis")
         self.data_handler.insert_user("Jessy")
-        self.data_handler.insert_match(1, 3, "Bayern", "Dortmund", 1, 0, "08,11,2002")
-        self.data_handler.insert_match(2, 5, "Hamburg", "Freiburg", 2, 2, "09,07,2010")
-        self.data_handler.insert_match(4, 3, "Dortmund", "Stuttgart", 1, 4, "24,01,2008")
-        self.data_handler.insert_match(3, 5, "Lautern", "Berlin", 0, 2, "15,06,2011")
-        self.data_handler.insert_match(5, 1, "Frankfurt", "Hoffenheim", 4, 4, "01,12,2001")        
-        self.data_handler.insert_match(4, 2, u"1860 München", "Hoffenheim", 0, 2, "01,12,2005")        
+        self.data_handler.insert_match(1, 3, "Bayern", "Dortmund", 1, 0, "2002-11-08")
+        self.data_handler.insert_match(2, 5, "Hamburg", "Freiburg", 2, 2, "2010-07-09")
+        self.data_handler.insert_match(4, 3, "Dortmund", "Stuttgart", 1, 4, "2008-01-24")
+        self.data_handler.insert_match(3, 5, "Lautern", "Berlin", 0, 2, "2011-06-15")
+        self.data_handler.insert_match(5, 1, "Frankfurt", "Hoffenheim", 4, 4, "2001-12-01")        
+        self.data_handler.insert_match(4, 2, u"1860 München", "Hoffenheim", 0, 2, "2011-11-11")        
         self.update_main_users()
         
     def onInfo(self):

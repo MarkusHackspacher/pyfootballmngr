@@ -25,12 +25,11 @@ class DlgNewMatch(QtGui.QDialog):
         self.team2 = QtGui.QLineEdit(self)
         self.goals1 = QtGui.QSpinBox(self)
         self.goals2 = QtGui.QSpinBox(self)
-        self.date = QtGui.QLineEdit(self)
         self.users = QtGui.QLabel(self)
         self.team = QtGui.QLabel(self)
         self.goal = QtGui.QLabel(self)
         self.date_match = QtGui.QLabel(self)
-
+        self.calendarWidget = QtGui.QCalendarWidget(self)
 
         self.boxLayout = QtGui.QBoxLayout(QtGui.QBoxLayout.TopToBottom, self)
 
@@ -45,7 +44,7 @@ class DlgNewMatch(QtGui.QDialog):
         gridLayout.addWidget(self.goals1, 2, 1, 1, 1)
         gridLayout.addWidget(self.goals2, 2, 2, 1, 1)
         gridLayout.addWidget(self.date_match, 3, 0, 1, 1)
-        gridLayout.addWidget(self.date, 3, 1, 2, 1)
+        gridLayout.addWidget(self.calendarWidget, 3, 1, 2, 2)
    
         self.boxLayout.addLayout(gridLayout)
         self.boxLayout.addWidget(self.buttonBox)
@@ -65,7 +64,9 @@ class DlgNewMatch(QtGui.QDialog):
         
     def getValues(self):
         """id1, id2, team1, team2, goals1, goals2, date"""
-        return str(self.data_of_users[self.id1.currentIndex()][0]), str(self.data_of_users[self.id2.currentIndex()][0]), \
+        return str(self.data_of_users[self.id1.currentIndex()][0]), \
+        str(self.data_of_users[self.id2.currentIndex()][0]), \
          unicode(self.team1.text()), unicode(self.team2.text()),\
-         self.goals1.value(), self.goals2.value(), str(self.date.text())
+         self.goals1.value(), self.goals2.value(), \
+         self.calendarWidget.selectedDate().toPyDate()
 
