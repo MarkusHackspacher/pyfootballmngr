@@ -1,4 +1,4 @@
-eine Alternative zur Stift&Papier-Methode beim Notieren der Ergebnisse. 
+eine Alternative zur Stift&Papier-Methode beim Notieren der Ergebnisse.
 
 Ein Fork von http://sourceforge.net/p/pyfootballmngr
 
@@ -12,8 +12,10 @@ python pyfootballmngr.py
 
 Installieren:
 
-Das Programm benötigt Python 2.7 dazu. www.python.org/download/ 
+Das Programm benötigt Python 2.7 dazu. www.python.org/download/
 und Qt4 für Python 2.7 www.riverbankcomputing.com/software/pyqt/download
 
-Start mit: 
+Start mit:
 python pyfootballmngr.py
+
+Lizenz: GNU GPLv3

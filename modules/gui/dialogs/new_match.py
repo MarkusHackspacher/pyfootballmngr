@@ -1,3 +1,27 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+"""
+pyfootballmngr
+
+Copyright (C) <2012-2013> Markus Hackspacher
+
+This file is part of pyfootballmngr.
+
+pyfootballmngr is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+pyfootballmngr is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 from os.path import join
 from PyQt4 import QtCore, QtGui
 
@@ -6,15 +30,17 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
+
 class DlgNewMatch(QtGui.QDialog):
     def __init__(self, data_of_users):
         QtGui.QDialog.__init__(self)
-        
+
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)
         self.buttonBox = QtGui.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel |
+         QtGui.QDialogButtonBox.Ok)
 
         self.id1 = QtGui.QComboBox(self)
         self.id2 = QtGui.QComboBox(self)
@@ -45,7 +71,7 @@ class DlgNewMatch(QtGui.QDialog):
         gridLayout.addWidget(self.goals2, 2, 2, 1, 1)
         gridLayout.addWidget(self.date_match, 3, 0, 1, 1)
         gridLayout.addWidget(self.calendarWidget, 3, 1, 2, 2)
-   
+
         self.boxLayout.addLayout(gridLayout)
         self.boxLayout.addWidget(self.buttonBox)
 
@@ -58,10 +84,9 @@ class DlgNewMatch(QtGui.QDialog):
         self.setWindowTitle("New Match Dialog")
         self.id1.setFocus()
 
-
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.close)
-        
+
     def getValues(self):
         """id1, id2, team1, team2, goals1, goals2, date"""
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
@@ -69,4 +94,3 @@ class DlgNewMatch(QtGui.QDialog):
          unicode(self.team1.text()), unicode(self.team2.text()),\
          self.goals1.value(), self.goals2.value(), \
          self.calendarWidget.selectedDate().toPyDate()
-

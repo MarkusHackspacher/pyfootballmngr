@@ -1,7 +1,31 @@
+#!/usr/bin/env python
 # coding: utf-8
+
+"""
+pyfootballmngr
+
+Copyright (C) <2012-2013> Markus Hackspacher
+
+This file is part of pyfootballmngr.
+
+pyfootballmngr is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+pyfootballmngr is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 import sqlite3
 import datetime
 import itertools
+
 
 class Datahandler(object):
     def __init__(self, path):
@@ -11,25 +35,28 @@ class Datahandler(object):
 
     def create_tables(self):
         c = self.connection.cursor()
-        c.execute("create table if not exists users \
-            (id INTEGER PRIMARY KEY, name text, reg timestamp, last timestamp)")
-        c.execute("create table if not exists matches \
-            (id INTEGER PRIMARY KEY, pid1 integer, pid2 integer, team1 text, team2 text, goals1 integer, goals2 integer, date timestamp)")
+        c.execute("create table if not exists users "
+         "(id INTEGER PRIMARY KEY, name text, reg timestamp, last timestamp)")
+        c.execute("create table if not exists matches "
+         "(id INTEGER PRIMARY KEY, pid1 integer, pid2 integer, team1 text, "
+         "team2 text, goals1 integer, goals2 integer, date timestamp)")
         self.connection.commit()
         c.close()
 
     def insert_user(self, name):
         c = self.connection.cursor()
-        c.execute("insert into users values (NULL, ?, ?, ?)", ( name, datetime.datetime.now().strftime("%d.%m.20%y"), None))
+        c.execute("insert into users values (NULL, ?, ?, ?)", (name,
+         datetime.datetime.now().strftime("%d.%m.20%y"), None))
         self.connection.commit()
         c.close()
 
     def update_user(self, id, name, last=None):
         c = self.connection.cursor()
         if last:
-            c.execute("update users set name=?, last=? where id=?", ( name, last, id, ))
+            c.execute("update users set name=?, last=? where id=?", (
+             name, last, id, ))
         else:
-            c.execute("update users set name=? where id=?", ( name, id, ))
+            c.execute("update users set name=? where id=?", (name, id, ))
         self.connection.commit()
         c.close()
 
@@ -61,13 +88,16 @@ class Datahandler(object):
 
     def insert_match(self, id1, id2, team1, team2, goals1, goals2, date):
         c = self.connection.cursor()
-        c.execute("insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)", (id1, id2, team1, team2, goals1, goals2, date))
+        c.execute("insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
+         (id1, id2, team1, team2, goals1, goals2, date))
         self.connection.commit()
         c.close()
 
     def update_match(self, id, id1, id2, team1, team2, goals1, goals2, date):
         c = self.connection.cursor()
-        c.execute("update matches set pid1=?, pid2=?, team1=?, team2=?, goals1=?, goals2=?, date=? where id=?", (id1, id2, team1, team2, goals1, goals2, date, id))
+        c.execute("update matches set pid1=?, pid2=?, team1=?, team2=?, "
+        "goals1=?, goals2=?, date=? where id=?",
+         (id1, id2, team1, team2, goals1, goals2, date, id))
         self.connection.commit()
         c.close()
 
@@ -100,8 +130,8 @@ class Datahandler(object):
         sec = c.fetchall()
         c.close()
 
-        pos = sum([a for a,b in first]) + sum([b for a,b in sec])
-        neg = sum([b for a,b in first]) + sum([a for a,b in sec])
+        pos = sum([a for a, b in first]) + sum([b for a, b in sec])
+        neg = sum([b for a, b in first]) + sum([a for a, b in sec])
 
         return pos - neg
 
@@ -138,8 +168,10 @@ class Datahandler(object):
         teams = []
 
         for t1, t2 in data:
-            if t1 not in teams: teams.append(t1)
-            if t2 not in teams: teams.append(t2)
+            if t1 not in teams:
+                teams.append(t1)
+            if t2 not in teams:
+                teams.append(t2)
         return sorted(teams)
 
     def close(self):

@@ -1,5 +1,30 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+pyfootballmngr
+
+Copyright (C) <2012-2013> Markus Hackspacher
+
+This file is part of pyfootballmngr.
+
+pyfootballmngr is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+pyfootballmngr is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 from os.path import join
 from PyQt4 import QtCore, QtGui
+
 
 class PlayerModel(QtCore.QAbstractTableModel):
     def __init__(self, data, parent=None):
@@ -29,7 +54,9 @@ class PlayerModel(QtCore.QAbstractTableModel):
             return QtCore.QVariant()
         elif int_role != QtCore.Qt.DisplayRole:
             return QtCore.QVariant()
-        return QtCore.QVariant(self.data[QModelIndex.row()][QModelIndex.column()])
+        return QtCore.QVariant(self.data[QModelIndex.row()]
+         [QModelIndex.column()])
+
 
 class WndMain(QtGui.QMainWindow):
     def __init__(self):
@@ -40,15 +67,19 @@ class WndMain(QtGui.QMainWindow):
         self.gridLayout_2 = QtGui.QGridLayout(self.centralwidget)
 
         self.gbPlayers = QtGui.QGroupBox(self.centralwidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy = QtGui.QSizePolicy(
+         QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.gbPlayers.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+         self.gbPlayers.sizePolicy().hasHeightForWidth())
         self.gbPlayers.setSizePolicy(sizePolicy)
 
         self.tViewPlayers = QtGui.QTableView(self.gbPlayers)
-        self.tViewPlayers.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
-        self.tViewPlayers.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.tViewPlayers.setSelectionMode(
+         QtGui.QAbstractItemView.SingleSelection)
+        self.tViewPlayers.setSelectionBehavior(
+         QtGui.QAbstractItemView.SelectRows)
         self.tViewPlayers.setGridStyle(QtCore.Qt.SolidLine)
 
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.gbPlayers)
@@ -56,10 +87,12 @@ class WndMain(QtGui.QMainWindow):
 
         self.gridLayout.addWidget(self.gbPlayers, 0, 0, 2, 1)
         self.gbLastMatches = QtGui.QGroupBox(self.centralwidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,
+         QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.gbLastMatches.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+         self.gbLastMatches.sizePolicy().hasHeightForWidth())
         self.gbLastMatches.setSizePolicy(sizePolicy)
 
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.gbLastMatches)
@@ -68,10 +101,12 @@ class WndMain(QtGui.QMainWindow):
         self.verticalLayout_3.addWidget(self.lViewMatches)
         self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 2)
         self.gbPlayerInfo = QtGui.QGroupBox(self.centralwidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,
+         QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.gbPlayerInfo.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+         self.gbPlayerInfo.sizePolicy().hasHeightForWidth())
         self.gbPlayerInfo.setSizePolicy(sizePolicy)
 
         self.verticalLayout = QtGui.QVBoxLayout(self.gbPlayerInfo)
@@ -119,7 +154,8 @@ class WndMain(QtGui.QMainWindow):
         self.menuFile.addAction(self.actionExit)
         self.menubar.addAction(self.menuFile.menuAction())
 
-        self.tViewPlayers.horizontalHeader().setResizeMode(QtGui.QHeaderView.Stretch)
+        self.tViewPlayers.horizontalHeader().setResizeMode(
+         QtGui.QHeaderView.Stretch)
 
         self.setWindowTitle("Football statistics manager")
         self.gbPlayers.setTitle("Players")
@@ -138,8 +174,6 @@ class WndMain(QtGui.QMainWindow):
 
         self.actionAdd_Player.setShortcut("Ctrl+N")
         self.actionRemove_Player.setShortcut("Del")
-        
-        
 
     def update_users(self, users):
         edited = [(id, name, rd) for id, name, rd, last in users]
@@ -148,6 +182,6 @@ class WndMain(QtGui.QMainWindow):
 
     def update_matches(self, matches):
         self.lViewMatches.clear()
-        edited = ["%s - %s : %d - %d" % (dat[3], dat[4], dat[5], dat[6]) for dat in matches]
+        edited = ["%s - %s : %d - %d" % (dat[3], dat[4], dat[5],
+         dat[6]) for dat in matches]
         map(self.lViewMatches.addItem, edited)
-

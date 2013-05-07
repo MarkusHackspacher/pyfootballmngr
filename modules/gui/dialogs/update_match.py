@@ -1,3 +1,27 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+"""
+pyfootballmngr
+
+Copyright (C) <2012-2013> Markus Hackspacher
+
+This file is part of pyfootballmngr.
+
+pyfootballmngr is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+pyfootballmngr is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 from os.path import join
 from PyQt4 import QtCore, QtGui
 
@@ -6,15 +30,18 @@ try:
 except AttributeError:
     _fromUtf8 = lambda s: s
 
+
 class DlgUpdateMatch(QtGui.QDialog):
-    def __init__(self, data_of_users, id1, id2, team1, team2, goals1, goals2, date):
+    def __init__(self, data_of_users, id1, id2, team1, team2, goals1, goals2,
+     date):
         QtGui.QDialog.__init__(self)
-        
+
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)
         self.buttonBox = QtGui.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel |
+         QtGui.QDialogButtonBox.Ok)
 
         self.id1 = QtGui.QComboBox(self)
         self.id2 = QtGui.QComboBox(self)
@@ -31,7 +58,6 @@ class DlgUpdateMatch(QtGui.QDialog):
         self.date_match = QtGui.QLabel(self)
         self.calendarWidget = QtGui.QCalendarWidget(self)
 
-
         self.boxLayout = QtGui.QBoxLayout(QtGui.QBoxLayout.TopToBottom, self)
 
         gridLayout = QtGui.QGridLayout()
@@ -46,7 +72,7 @@ class DlgUpdateMatch(QtGui.QDialog):
         gridLayout.addWidget(self.goals2, 2, 2, 1, 1)
         gridLayout.addWidget(self.date_match, 3, 0, 1, 1)
         gridLayout.addWidget(self.calendarWidget, 3, 1, 2, 2)
-   
+
         self.boxLayout.addLayout(gridLayout)
         self.boxLayout.addWidget(self.buttonBox)
 
@@ -57,20 +83,19 @@ class DlgUpdateMatch(QtGui.QDialog):
         self.goal.setText("Goals")
         self.date_match.setText("Date of the match")
         self.setWindowTitle("Update Match Dialog")
-        self.id1.setCurrentIndex(id1-1)
-        self.id2.setCurrentIndex(id2-1)
+        self.id1.setCurrentIndex(id1 - 1)
+        self.id2.setCurrentIndex(id2 - 1)
         self.team1.setText(team1)
         self.team2.setText(team2)
         self.goals1.setValue(goals1)
         self.goals2.setValue(goals2)
-        self.calendarWidget.setSelectedDate \
-         (QtCore.QDate.fromString(date,"yyyy-MM-dd"))
+        self.calendarWidget.setSelectedDate(QtCore.QDate.fromString(date,
+         "yyyy-MM-dd"))
         self.id1.setFocus()
-
 
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.close)
-        
+
     def getValues(self):
         """id1, id2, team1, team2, goals1, goals2, date"""
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
@@ -78,4 +103,3 @@ class DlgUpdateMatch(QtGui.QDialog):
          unicode(self.team1.text()), unicode(self.team2.text()),\
          self.goals1.value(), self.goals2.value(), \
          self.calendarWidget.selectedDate().toPyDate()
-
