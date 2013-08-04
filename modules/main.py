@@ -48,17 +48,13 @@ class Main(QtCore.QObject):
 
     def connect_slots(self):
         self.main.actionAdd_Player.triggered.connect(self.new_player)
-        self.connect(self.main.actionUpdate_Player, QtCore.SIGNAL(
-         'triggered()'), self.update_player)
+        self.main.actionUpdate_Player.triggered.connect(self.update_player)
         self.main.actionRemove_Player.triggered.connect(self.delete_player)
         self.main.actionAdd_Match.triggered.connect(self.new_match)
-        self.connect(self.main.actionUpdate_Match, QtCore.SIGNAL(
-         'triggered()'), self.update_match)
+        self.main.actionUpdate_Match.triggered.connect(self.update_match)
         self.main.actionRemove_Match.triggered.connect(self.delete_match)
-        self.connect(self.main.actionExampleData, QtCore.SIGNAL('triggered()'),
-         self.onExampleData)
-        self.connect(self.main.actionAbout, QtCore.SIGNAL('triggered()'),
-         self.onInfo)
+        self.main.actionExampleData.triggered.connect(self.onExampleData)
+        self.main.actionAbout.triggered.connect(self.onInfo)
         self.main.actionExit.triggered.connect(self.exit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
         self.main.lViewMatches.clicked.connect(self.match_selected)
