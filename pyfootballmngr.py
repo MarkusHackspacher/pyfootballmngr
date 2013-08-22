@@ -22,9 +22,10 @@ You should have received a copy of the GNU General Public License
 along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import sys
 
 from modules import main
 
 if __name__ == "__main__":
-    app = main.Main()
+    app = main.Main(sys.argv)
     app.mainLoop()

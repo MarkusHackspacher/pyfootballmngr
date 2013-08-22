@@ -45,7 +45,7 @@ class Datahandler(object):
 
     def insert_user(self, name):
         c = self.connection.cursor()
-        c.execute("insert into users values (NULL, ?, ?, ?)", (name,
+        c.execute("insert into users values (NULL, ?, ?, ?)", (unicode(name),
          datetime.datetime.now().strftime("%d.%m.20%y"), None))
         self.connection.commit()
         c.close()
@@ -89,7 +89,7 @@ class Datahandler(object):
     def insert_match(self, id1, id2, team1, team2, goals1, goals2, date):
         c = self.connection.cursor()
         c.execute("insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
-         (id1, id2, team1, team2, goals1, goals2, date))
+         (id1, id2, unicode(team1), unicode(team2), goals1, goals2, date))
         self.connection.commit()
         c.close()
 

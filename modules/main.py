@@ -22,6 +22,7 @@ You should have received a copy of the GNU General Public License
 along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from os.path import join
 from PyQt4 import QtCore, QtGui
 from gui.main_window import WndMain
 from gui.dialogs.new_player import DlgNewPlayer
@@ -32,9 +33,23 @@ from datahandler import Datahandler
 
 
 class Main(QtCore.QObject):
-    def __init__(self):
+    def __init__(self, arguments):
+        """open the GUI
+        @param arguments: language (en, de)
+        @type arguments: string
+        @return: none
+        """
         QtCore.QObject.__init__(self)
         self.app = QtGui.QApplication([])
+        if len(arguments) > 1:
+            locale = arguments[1]
+        else:
+            locale = unicode(QtCore.QLocale.system().name())
+            print "locale: " + unicode(locale)
+        translator = QtCore.QTranslator(self.app)
+        translator.load(join("modules", "pyfbm_" + unicode(locale)))
+        self.app.installTranslator(translator)
+
         self.data_handler = Datahandler("datenbank.sqlite")
 
         self.init()
@@ -81,9 +96,9 @@ class Main(QtCore.QObject):
          self.main.lViewMatches.currentRow()][2])[0][0])
         self.main.lblInfo1.setText(text)
         if id:
-            self.main.lblInfo2.setText(u"Tordifferenz von {}: {:+}".format(
+            self.main.lblInfo2.setText(self.tr("Goal Difference of {}: {:+}".format(
              self.data_handler.get_users(id)[0][0],
-             self.data_handler.get_diff(id)))
+             self.data_handler.get_diff(id))))
 
     def model_index_to_id(self, row):
         m = self.main.tViewPlayers.model().data
@@ -118,8 +133,8 @@ class Main(QtCore.QObject):
              )[0].row()
         except Exception:
             a = QtGui.QMessageBox()
-            a.setWindowTitle('Info')
-            a.setText('no player selected')
+            a.setWindowTitle(self.tr('Info'))
+            a.setText(self.tr('no player selected'))
             a.exec_()
             return
 
@@ -142,8 +157,8 @@ class Main(QtCore.QObject):
              )[0].row()
         except Exception:
             a = QtGui.QMessageBox()
-            a.setWindowTitle('Info')
-            a.setText('no player selected')
+            a.setWindowTitle(self.tr('Info'))
+            a.setText(self.tr('no player selected'))
             a.exec_()
             return
 
@@ -218,37 +233,34 @@ class Main(QtCore.QObject):
     def onExampleData(self):
         """ Load Example Data
         """
-        self.data_handler.insert_user("Patrick")
-        self.data_handler.insert_user("Max")
-        self.data_handler.insert_user(u"Bärbel")
-        self.data_handler.insert_user("Janis")
-        self.data_handler.insert_user("Jessy")
-        self.data_handler.insert_match(1, 3, "Bayern", "Dortmund",
-         1, 0, "2002-11-08")
-        self.data_handler.insert_match(2, 5, "Hamburg", "Freiburg",
-         2, 2, "2010-07-09")
-        self.data_handler.insert_match(4, 3, "Dortmund", "Stuttgart",
-         1, 4, "2008-01-24")
-        self.data_handler.insert_match(3, 5, "Lautern", "Berlin",
-         0, 2, "2011-06-15")
-        self.data_handler.insert_match(5, 1, "Frankfurt", "Hoffenheim",
-         4, 4, "2001-12-01")
-        self.data_handler.insert_match(4, 2, u"1860 München", "Hoffenheim",
-         0, 2, "2011-11-11")
+        self.data_handler.insert_user(self.tr("Isabelle"))
+        self.data_handler.insert_user(self.tr("Max"))
+        self.data_handler.insert_user(self.tr("Emily"))
+        self.data_handler.insert_user(self.tr("Jack"))
+        self.data_handler.insert_user(self.tr("George"))
+        self.data_handler.insert_match(1, 3, self.tr("Manchester City"),
+         self.tr("Chelsea"), 1, 0, "2002-11-08")
+        self.data_handler.insert_match(2, 5, self.tr("Manchester Utd"),
+         self.tr("Aston Villa"), 2, 2, "2010-07-09")
+        self.data_handler.insert_match(4, 3, self.tr("Chelsea"),
+         self.tr("Tottenham"), 1, 4, "2008-01-24")
+        self.data_handler.insert_match(3, 5, self.tr("Arsenal"),
+         self.tr("Liverpool"), 0, 2, "2011-06-15")
+        self.data_handler.insert_match(5, 1, self.tr("Arsenal"),
+         self.tr("Manchester Utd"), 4, 4, "2001-12-01")
+        self.data_handler.insert_match(4, 2, self.tr("Manchester City"),
+         self.tr("Fulham"), 0, 2, "2011-11-11")
         self.update_main_users()
 
     def onInfo(self):
         """ Programm Info
         """
-        text = (u'eine Alternative zur Stift&Papier-Methode beim Notieren der '
-        u'Ergebnisse. Von 12345z veröffentlicht 2011 auf '
-        u'http://www.python-forum.de/viewtopic.php?f=9&t=27313 '
-        u'und https://sourceforge.net/p/pyfootballmngr\n'
-        'Erweitert 2012-2013 Markus Hackspacher '
-        'https://github.com/MarkusHackspacher/pyfootballmngr \n'
-        u'Lizenz: GNU GPLv3')
+        text = self.tr('an alternative to paper-pencil method when recording'
+        'the results. Develop 2012-2013 Markus Hackspacher '
+        'http://github.com/MarkusHackspacher/pyfootballmngr \n'
+        'licence: GNU GPLv3')
         a = QtGui.QMessageBox()
-        a.setWindowTitle('Info')
+        a.setWindowTitle(self.tr('Info'))
         a.setText(text)
         a.setInformativeText('')
         a.exec_()

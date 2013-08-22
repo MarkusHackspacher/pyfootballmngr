@@ -138,7 +138,7 @@ class WndMain(QtGui.QMainWindow):
         self.actionExit = QtGui.QAction(self)
 
         self.menuFile = QtGui.QMenu(self.menubar)
-        self.menuFile.setTitle("File")
+        self.menuFile.setTitle(self.tr("File"))
 
         self.menuFile.addAction(self.actionAdd_Player)
         self.menuFile.addAction(self.actionUpdate_Player)
@@ -157,20 +157,20 @@ class WndMain(QtGui.QMainWindow):
         self.tViewPlayers.horizontalHeader().setResizeMode(
          QtGui.QHeaderView.Stretch)
 
-        self.setWindowTitle("Football statistics manager")
-        self.gbPlayers.setTitle("Players")
-        self.gbLastMatches.setTitle("Last matches")
-        self.gbPlayerInfo.setTitle("Information")
+        self.setWindowTitle(self.tr("Football statistics manager"))
+        self.gbPlayers.setTitle(self.tr("Players"))
+        self.gbLastMatches.setTitle(self.tr("Last matches"))
+        self.gbPlayerInfo.setTitle(self.tr("Information"))
 
-        self.actionAdd_Player.setText("Add player")
-        self.actionUpdate_Player.setText("Update player")
-        self.actionRemove_Player.setText("Remove player")
-        self.actionAdd_Match.setText("Add match")
-        self.actionUpdate_Match.setText("Update match")
-        self.actionRemove_Match.setText("Remove match")
-        self.actionExampleData.setText("Load example data")
-        self.actionAbout.setText("About")
-        self.actionExit.setText("Exit")
+        self.actionAdd_Player.setText(self.tr("Add player"))
+        self.actionUpdate_Player.setText(self.tr("Update player"))
+        self.actionRemove_Player.setText(self.tr("Remove player"))
+        self.actionAdd_Match.setText(self.tr("Add match"))
+        self.actionUpdate_Match.setText(self.tr("Update match"))
+        self.actionRemove_Match.setText(self.tr("Remove match"))
+        self.actionExampleData.setText(self.tr("Load example data"))
+        self.actionAbout.setText(self.tr("About"))
+        self.actionExit.setText(self.tr("Exit"))
 
         self.actionAdd_Player.setShortcut("Ctrl+N")
         self.actionRemove_Player.setShortcut("Del")
