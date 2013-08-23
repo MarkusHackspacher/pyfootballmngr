@@ -78,11 +78,11 @@ class DlgUpdateMatch(QtGui.QDialog):
 
         self.data_of_users = data_of_users
 
-        self.users.setText("Users")
-        self.team.setText("Team")
-        self.goal.setText("Goals")
-        self.date_match.setText("Date of the match")
-        self.setWindowTitle("Update Match Dialog")
+        self.users.setText(self.tr("Player"))
+        self.team.setText(self.tr("Team"))
+        self.goal.setText(self.tr("Goals"))
+        self.date_match.setText(self.tr("Date of the match"))
+        self.setWindowTitle(self.tr("Update Match Dialog"))
         self.id1.setCurrentIndex(id1 - 1)
         self.id2.setCurrentIndex(id2 - 1)
         self.team1.setText(team1)

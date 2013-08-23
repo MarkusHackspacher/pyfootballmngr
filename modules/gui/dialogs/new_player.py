@@ -48,8 +48,8 @@ class DlgNewPlayer(QtGui.QDialog):
         self.boxLayout.addLayout(gridLayout)
         self.boxLayout.addWidget(self.buttonBox)
 
-        self.label.setText("Username")
-        self.setWindowTitle("New Player Dialog")
+        self.label.setText(self.tr("Player"))
+        self.setWindowTitle(self.tr("New Player Dialog"))
         self.txtName.setFocus()
 
         self.buttonBox.accepted.connect(self.accept)

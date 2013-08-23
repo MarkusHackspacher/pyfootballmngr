@@ -77,11 +77,11 @@ class DlgNewMatch(QtGui.QDialog):
 
         self.data_of_users = data_of_users
 
-        self.users.setText("Users")
-        self.team.setText("Team")
-        self.goal.setText("Goals")
-        self.date_match.setText("Date of the match")
-        self.setWindowTitle("New Match Dialog")
+        self.users.setText(self.tr("Player"))
+        self.team.setText(self.tr("Team"))
+        self.goal.setText(self.tr("Goals"))
+        self.date_match.setText(self.tr("Date of the match"))
+        self.setWindowTitle(self.tr("New Match Dialog"))
         self.id1.setFocus()
 
         self.buttonBox.accepted.connect(self.accept)

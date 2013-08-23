@@ -70,7 +70,7 @@ class Main(QtCore.QObject):
         self.main.actionRemove_Match.triggered.connect(self.delete_match)
         self.main.actionExampleData.triggered.connect(self.onExampleData)
         self.main.actionAbout.triggered.connect(self.onInfo)
-        self.main.actionExit.triggered.connect(self.exit)
+        self.main.actionExit.triggered.connect(self.onexit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
         self.main.lViewMatches.clicked.connect(self.match_selected)
 
@@ -96,9 +96,10 @@ class Main(QtCore.QObject):
          self.main.lViewMatches.currentRow()][2])[0][0])
         self.main.lblInfo1.setText(text)
         if id:
-            self.main.lblInfo2.setText(self.tr("Goal Difference of {}: {:+}".format(
-             self.data_handler.get_users(id)[0][0],
-             self.data_handler.get_diff(id))))
+            text = self.tr("Goal Difference of")
+            self.main.lblInfo2.setText("{0} {1}: {2:+}".format(
+             text, self.data_handler.get_users(id)[0][0],
+             self.data_handler.get_diff(id)))
 
     def model_index_to_id(self, row):
         m = self.main.tViewPlayers.model().data
@@ -265,7 +266,7 @@ class Main(QtCore.QObject):
         a.setInformativeText('')
         a.exec_()
 
-    def exit(self):
+    def onexit(self):
         """exit and close
         """
         self.data_handler.close()

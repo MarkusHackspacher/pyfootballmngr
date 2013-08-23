@@ -49,8 +49,8 @@ class DlgUpdatePlayer(QtGui.QDialog):
         self.boxLayout.addLayout(gridLayout)
         self.boxLayout.addWidget(self.buttonBox)
 
-        self.label.setText("Username")
-        self.setWindowTitle("Update Playername Dialog")
+        self.label.setText(self.tr("Player"))
+        self.setWindowTitle(self.tr("Update Playername Dialog"))
         self.txtName.setFocus()
         self.txtName.setText(old_player_name)
 
