@@ -134,6 +134,7 @@ class WndMain(QtGui.QMainWindow):
         self.actionUpdate_Match = QtGui.QAction(self)
         self.actionRemove_Match = QtGui.QAction(self)
         self.actionExampleData = QtGui.QAction(self)
+        self.actionGo_to_the_website = QtGui.QAction(self)
         self.actionAbout = QtGui.QAction(self)
         self.actionExit = QtGui.QAction(self)
 
@@ -150,9 +151,15 @@ class WndMain(QtGui.QMainWindow):
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionExampleData)
         self.menuFile.addSeparator()
-        self.menuFile.addAction(self.actionAbout)
         self.menuFile.addAction(self.actionExit)
         self.menubar.addAction(self.menuFile.menuAction())
+
+        self.menu_help = QtGui.QMenu(self.menubar)
+        self.menu_help.setTitle(self.tr("Help"))
+
+        self.menu_help.addAction(self.actionGo_to_the_website)
+        self.menu_help.addAction(self.actionAbout)
+        self.menubar.addAction(self.menu_help.menuAction())
 
         self.tViewPlayers.horizontalHeader().setResizeMode(
          QtGui.QHeaderView.Stretch)
@@ -169,6 +176,7 @@ class WndMain(QtGui.QMainWindow):
         self.actionUpdate_Match.setText(self.tr("Update match"))
         self.actionRemove_Match.setText(self.tr("Remove match"))
         self.actionExampleData.setText(self.tr("Load example data"))
+        self.actionGo_to_the_website.setText(self.tr("Go to the website"))
         self.actionAbout.setText(self.tr("About"))
         self.actionExit.setText(self.tr("Exit"))
 

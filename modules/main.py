@@ -23,7 +23,9 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from os.path import join
+import webbrowser
 from PyQt4 import QtCore, QtGui
+
 from gui.main_window import WndMain
 from gui.dialogs.new_player import DlgNewPlayer
 from gui.dialogs.update_player import DlgUpdatePlayer
@@ -69,6 +71,7 @@ class Main(QtCore.QObject):
         self.main.actionUpdate_Match.triggered.connect(self.update_match)
         self.main.actionRemove_Match.triggered.connect(self.delete_match)
         self.main.actionExampleData.triggered.connect(self.onExampleData)
+        self.main.actionGo_to_the_website.triggered.connect(self.onwebsite)
         self.main.actionAbout.triggered.connect(self.onInfo)
         self.main.actionExit.triggered.connect(self.onexit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
@@ -265,6 +268,11 @@ class Main(QtCore.QObject):
         a.setText(text)
         a.setInformativeText('')
         a.exec_()
+
+    def onwebsite(self):
+        """ open website """
+        webbrowser.open_new_tab("http://markush.cwsurf.de/"
+         "joomla_17/index.php/python/16-pyfootballmngr/")
 
     def onexit(self):
         """exit and close
