@@ -45,27 +45,27 @@
 <context>
     <name>DlgUpdateMatch</name>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="81"/>
+        <location filename="gui/dialogs/update_match.py" line="91"/>
         <source>Player</source>
         <translation>Spieler</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="82"/>
+        <location filename="gui/dialogs/update_match.py" line="92"/>
         <source>Team</source>
         <translation>Mannschaft</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="83"/>
+        <location filename="gui/dialogs/update_match.py" line="93"/>
         <source>Goals</source>
         <translation>Tore</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="84"/>
+        <location filename="gui/dialogs/update_match.py" line="94"/>
         <source>Date of the match</source>
         <translation>Datum des Spiels</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="85"/>
+        <location filename="gui/dialogs/update_match.py" line="95"/>
         <source>Update Match Dialog</source>
         <translation>Spiel aktualisieren</translation>
     </message>
@@ -171,6 +171,24 @@ Lizenz: GNU GPLv3</translation>
         <location filename="main.py" line="102"/>
         <source>Goal Difference of</source>
         <translation>Tordifferenz von</translation>
+    </message>
+</context>
+<context>
+    <name>PlayerModel</name>
+    <message>
+        <location filename="gui/main_window.py" line="39"/>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location filename="gui/main_window.py" line="40"/>
+        <source>Username</source>
+        <translation>Spieler</translation>
+    </message>
+    <message>
+        <location filename="gui/main_window.py" line="41"/>
+        <source>Reg. Date</source>
+        <translation>Datum</translation>
     </message>
 </context>
 <context>

@@ -36,9 +36,9 @@ class PlayerModel(QtCore.QAbstractTableModel):
 
     def headerData(self, p_int, Qt_Orientation, int_role=None):
         headers = {
-            0: "ID",
-            1: "Username",
-            2: "Reg. Date",
+            0: self.tr("ID"),
+            1: self.tr("Username"),
+            2: self.tr("Reg. Date"),
         }
         if Qt_Orientation == QtCore.Qt.Horizontal and int_role == 0:
             return headers[p_int]

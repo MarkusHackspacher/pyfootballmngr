@@ -34,6 +34,16 @@ except AttributeError:
 class DlgUpdateMatch(QtGui.QDialog):
     def __init__(self, data_of_users, id1, id2, team1, team2, goals1, goals2,
      date):
+        """open Update Match dialog
+        @type data_of_users: list
+        @type id1: int
+        @type id2: int
+        @type team1: int
+        @type team2: int
+        @type goals1: int
+        @type goals2: int
+        @type date: date
+        """
         QtGui.QDialog.__init__(self)
 
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
@@ -46,8 +56,8 @@ class DlgUpdateMatch(QtGui.QDialog):
         self.id1 = QtGui.QComboBox(self)
         self.id2 = QtGui.QComboBox(self)
         for user in data_of_users:
-            self.id1.addItem((user[1]))
-            self.id2.addItem(_fromUtf8(user[1]))
+            self.id1.addItem(user[1])
+            self.id2.addItem(user[1])
         self.team1 = QtGui.QLineEdit(self)
         self.team2 = QtGui.QLineEdit(self)
         self.goals1 = QtGui.QSpinBox(self)
@@ -83,8 +93,13 @@ class DlgUpdateMatch(QtGui.QDialog):
         self.goal.setText(self.tr("Goals"))
         self.date_match.setText(self.tr("Date of the match"))
         self.setWindowTitle(self.tr("Update Match Dialog"))
-        self.id1.setCurrentIndex(id1 - 1)
-        self.id2.setCurrentIndex(id2 - 1)
+        user_index = 0
+        for user in data_of_users:
+            if id1 == user[0]:
+                self.id1.setCurrentIndex(user_index)
+            if id2 == user[0]:
+                self.id2.setCurrentIndex(user_index)
+            user_index += 1
         self.team1.setText(team1)
         self.team2.setText(team2)
         self.goals1.setValue(goals1)
