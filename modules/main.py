@@ -64,6 +64,7 @@ class Main(QtCore.QObject):
         self.main.show()
 
     def connect_slots(self):
+        """Slots"""
         self.main.actionAdd_Player.triggered.connect(self.new_player)
         self.main.actionUpdate_Player.triggered.connect(self.update_player)
         self.main.actionRemove_Player.triggered.connect(self.delete_player)
@@ -93,10 +94,12 @@ class Main(QtCore.QObject):
             id = m[row][0]
 
         match_of_users = self.data_handler.get_matches(id)
-        text = u"{} - {}".format(self.data_handler.get_users(match_of_users
-         [self.main.lViewMatches.currentRow()][1])[0][0],
+        text = u"{0} - {1}  {2}".format(
          self.data_handler.get_users(match_of_users[
-         self.main.lViewMatches.currentRow()][2])[0][0])
+         self.main.lViewMatches.currentRow()][1])[0][0],
+         self.data_handler.get_users(match_of_users[
+         self.main.lViewMatches.currentRow()][2])[0][0],
+         match_of_users[self.main.lViewMatches.currentRow()][7])
         self.main.lblInfo1.setText(text)
         if id:
             text = self.tr("Goal Difference of")
@@ -172,8 +175,8 @@ class Main(QtCore.QObject):
         self.update_main_users()
 
         if row > 0:
-            index = QtCore.QModelIndex(self.main.tViewPlayers.model().index(
-             row - 1, 0))
+            index = QtCore.QModelIndex(
+             self.main.tViewPlayers.model().index(row - 1, 0))
             self.main.tViewPlayers.selectionModel().setCurrentIndex(index,
              QtGui.QItemSelectionModel.SelectCurrent)
 
@@ -218,8 +221,7 @@ class Main(QtCore.QObject):
         self.update_main_matches(id)
 
     def delete_match(self):
-        """delete a match
-        """
+        """delete a match"""
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel(
@@ -235,8 +237,7 @@ class Main(QtCore.QObject):
         self.update_main_matches(id)
 
     def onExampleData(self):
-        """ Load Example Data
-        """
+        """Load Example Data"""
         self.data_handler.insert_user(self.tr("Isabelle"))
         self.data_handler.insert_user(self.tr("Max"))
         self.data_handler.insert_user(self.tr("Emily"))
@@ -257,8 +258,7 @@ class Main(QtCore.QObject):
         self.update_main_users()
 
     def onInfo(self):
-        """ Programm Info
-        """
+        """ Programm Info"""
         text = self.tr('an alternative to paper-pencil method when recording'
         'the results. Develop 2012-2013 Markus Hackspacher '
         'http://github.com/MarkusHackspacher/pyfootballmngr \n'
@@ -275,10 +275,10 @@ class Main(QtCore.QObject):
          "joomla_17/index.php/python/16-pyfootballmngr/")
 
     def onexit(self):
-        """exit and close
-        """
+        """exit and close"""
         self.data_handler.close()
         self.main.close()
 
     def mainLoop(self):
+        """application start"""
         self.app.exec_()
