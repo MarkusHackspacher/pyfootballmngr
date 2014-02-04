@@ -40,7 +40,7 @@ class DlgNewMatch(QtGui.QDialog):
         self.buttonBox = QtGui.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel |
-         QtGui.QDialogButtonBox.Ok)
+                                          QtGui.QDialogButtonBox.Ok)
 
         self.id1 = QtGui.QComboBox(self)
         self.id2 = QtGui.QComboBox(self)
@@ -89,8 +89,15 @@ class DlgNewMatch(QtGui.QDialog):
 
     def getValues(self):
         """id1, id2, team1, team2, goals1, goals2, date"""
+        try:
+            team1_utf8 = unicode(self.team1.text())
+        except:
+            team1_utf8 = team1
+        try:
+            team2_utf8 = unicode(self.team2.text())
+        except:
+            team2_utf8 = team2
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
-        str(self.data_of_users[self.id2.currentIndex()][0]), \
-         unicode(self.team1.text()), unicode(self.team2.text()),\
-         self.goals1.value(), self.goals2.value(), \
-         self.calendarWidget.selectedDate().toPyDate()
+            str(self.data_of_users[self.id2.currentIndex()][0]), \
+            team1_utf8, team2_utf8, self.goals1.value(), self.goals2.value(), \
+            self.calendarWidget.selectedDate().toPyDate()

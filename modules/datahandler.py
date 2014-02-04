@@ -35,18 +35,25 @@ class Datahandler(object):
 
     def create_tables(self):
         c = self.connection.cursor()
-        c.execute("create table if not exists users "
-         "(id INTEGER PRIMARY KEY, name text, reg timestamp, last timestamp)")
-        c.execute("create table if not exists matches "
-         "(id INTEGER PRIMARY KEY, pid1 integer, pid2 integer, team1 text, "
-         "team2 text, goals1 integer, goals2 integer, date timestamp)")
+        c.execute(
+            "create table if not exists users "
+            "(id INTEGER PRIMARY KEY, name text, "
+            "reg timestamp, last timestamp)")
+        c.execute(
+            "create table if not exists matches "
+            "(id INTEGER PRIMARY KEY, pid1 integer, pid2 integer, team1 text, "
+            "team2 text, goals1 integer, goals2 integer, date timestamp)")
         self.connection.commit()
         c.close()
 
     def insert_user(self, name):
+        try:
+            name_utf8 = unicode(name)
+        except:
+            name_utf8 = name
         c = self.connection.cursor()
-        c.execute("insert into users values (NULL, ?, ?, ?)", (unicode(name),
-         datetime.datetime.now().strftime("%d.%m.20%y"), None))
+        c.execute("insert into users values (NULL, ?, ?, ?)", (name_utf8,
+                  datetime.datetime.now().strftime("%d.%m.20%y"), None))
         self.connection.commit()
         c.close()
 
@@ -54,7 +61,7 @@ class Datahandler(object):
         c = self.connection.cursor()
         if last:
             c.execute("update users set name=?, last=? where id=?", (
-             name, last, id, ))
+                      name, last, id, ))
         else:
             c.execute("update users set name=? where id=?", (name, id, ))
         self.connection.commit()
@@ -87,17 +94,27 @@ class Datahandler(object):
         return data
 
     def insert_match(self, id1, id2, team1, team2, goals1, goals2, date):
+        try:
+            team1_utf8 = unicode(team1)
+        except:
+            team1_utf8 = team1
+        try:
+            team2_utf8 = unicode(team2)
+        except:
+            team2_utf8 = team2
         c = self.connection.cursor()
-        c.execute("insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
-         (id1, id2, unicode(team1), unicode(team2), goals1, goals2, date))
+        c.execute(
+            "insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
+            (id1, id2, team1, team2, goals1, goals2, date))
         self.connection.commit()
         c.close()
 
     def update_match(self, id, id1, id2, team1, team2, goals1, goals2, date):
         c = self.connection.cursor()
-        c.execute("update matches set pid1=?, pid2=?, team1=?, team2=?, "
-        "goals1=?, goals2=?, date=? where id=?",
-         (id1, id2, team1, team2, goals1, goals2, date, id))
+        c.execute(
+            "update matches set pid1=?, pid2=?, team1=?, team2=?, "
+            "goals1=?, goals2=?, date=? where id=?",
+            (id1, id2, team1, team2, goals1, goals2, date, id))
         self.connection.commit()
         c.close()
 

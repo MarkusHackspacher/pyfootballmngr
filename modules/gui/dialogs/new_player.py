@@ -34,7 +34,7 @@ class DlgNewPlayer(QtGui.QDialog):
         self.buttonBox = QtGui.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel |
-         QtGui.QDialogButtonBox.Ok)
+                                          QtGui.QDialogButtonBox.Ok)
 
         self.txtName = QtGui.QLineEdit(self)
         self.label = QtGui.QLabel(self)
@@ -57,4 +57,8 @@ class DlgNewPlayer(QtGui.QDialog):
 
     def getValues(self):
         """return new playername in unicode"""
-        return unicode(self.txtName.text())
+        try:
+            name_utf8 = unicode(self.txtName.text())
+        except:
+            name_utf8 = self.txtName.text()
+        return name_utf8

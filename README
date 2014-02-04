@@ -4,16 +4,16 @@ Ein Fork von http://sourceforge.net/p/pyfootballmngr
 
 Install:
 
-The program requires Python 2.7. www.python.org/download/
-and Qt4 for Python 2.7 www.riverbankcomputing.com / software / pyqt / download
+The program requires Python 2.7 or 3.x www.python.org/download/
+and Qt4 for Python www.riverbankcomputing.com / software / pyqt / download
 
 Start with:
 python pyfootballmngr.py
 
 Installieren:
 
-Das Programm benötigt Python 2.7 dazu. www.python.org/download/
-und Qt4 für Python 2.7 www.riverbankcomputing.com/software/pyqt/download
+Das Programm benötigt Python 2.7 oder 3.x dazu. www.python.org/download/
+und Qt4 für Python www.riverbankcomputing.com/software/pyqt/download
 
 Start mit:
 python pyfootballmngr.py

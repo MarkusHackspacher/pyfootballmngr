@@ -26,12 +26,12 @@ from os.path import join
 import webbrowser
 from PyQt4 import QtCore, QtGui
 
-from gui.main_window import WndMain
-from gui.dialogs.new_player import DlgNewPlayer
-from gui.dialogs.update_player import DlgUpdatePlayer
-from gui.dialogs.new_match import DlgNewMatch
-from gui.dialogs.update_match import DlgUpdateMatch
-from datahandler import Datahandler
+from modules.gui.main_window import WndMain
+from modules.gui.dialogs.new_player import DlgNewPlayer
+from modules.gui.dialogs.update_player import DlgUpdatePlayer
+from modules.gui.dialogs.new_match import DlgNewMatch
+from modules.gui.dialogs.update_match import DlgUpdateMatch
+from modules.datahandler import Datahandler
 
 
 class Main(QtCore.QObject):
@@ -46,10 +46,13 @@ class Main(QtCore.QObject):
         if len(arguments) > 1:
             locale = arguments[1]
         else:
-            locale = unicode(QtCore.QLocale.system().name())
-            print "locale: " + unicode(locale)
+            try:
+                locale = unicode(QtCore.QLocale.system().name())
+            except:
+                locale = QtCore.QLocale.system().name()
+            print ("locale: " + locale)
         translator = QtCore.QTranslator(self.app)
-        translator.load(join("modules", "pyfbm_" + unicode(locale)))
+        translator.load(join("modules", "pyfbm_" + locale))
         self.app.installTranslator(translator)
 
         self.data_handler = Datahandler("datenbank.sqlite")
@@ -87,7 +90,7 @@ class Main(QtCore.QObject):
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
-             )[0].row()
+                )[0].row()
         except Exception:
             id = None
         else:
@@ -95,17 +98,17 @@ class Main(QtCore.QObject):
 
         match_of_users = self.data_handler.get_matches(id)
         text = u"{0} - {1}  {2}".format(
-         self.data_handler.get_users(match_of_users[
-         self.main.lViewMatches.currentRow()][1])[0][0],
-         self.data_handler.get_users(match_of_users[
-         self.main.lViewMatches.currentRow()][2])[0][0],
-         match_of_users[self.main.lViewMatches.currentRow()][7])
+            self.data_handler.get_users(match_of_users[
+                self.main.lViewMatches.currentRow()][1])[0][0],
+            self.data_handler.get_users(match_of_users[
+                self.main.lViewMatches.currentRow()][2])[0][0],
+            match_of_users[self.main.lViewMatches.currentRow()][7])
         self.main.lblInfo1.setText(text)
         if id:
             text = self.tr("Goal Difference of")
             self.main.lblInfo2.setText("{0} {1}: {2:+}".format(
-             text, self.data_handler.get_users(id)[0][0],
-             self.data_handler.get_diff(id)))
+                text, self.data_handler.get_users(id)[0][0],
+                self.data_handler.get_diff(id)))
 
     def model_index_to_id(self, row):
         m = self.main.tViewPlayers.model().data
@@ -137,7 +140,7 @@ class Main(QtCore.QObject):
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
-             )[0].row()
+                )[0].row()
         except Exception:
             a = QtGui.QMessageBox()
             a.setWindowTitle(self.tr('Info'))
@@ -161,7 +164,7 @@ class Main(QtCore.QObject):
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
-             )[0].row()
+                )[0].row()
         except Exception:
             a = QtGui.QMessageBox()
             a.setWindowTitle(self.tr('Info'))
@@ -176,9 +179,9 @@ class Main(QtCore.QObject):
 
         if row > 0:
             index = QtCore.QModelIndex(
-             self.main.tViewPlayers.model().index(row - 1, 0))
-            self.main.tViewPlayers.selectionModel().setCurrentIndex(index,
-             QtGui.QItemSelectionModel.SelectCurrent)
+                self.main.tViewPlayers.model().index(row - 1, 0))
+            self.main.tViewPlayers.selectionModel().setCurrentIndex(
+                index, QtGui.QItemSelectionModel.SelectCurrent)
 
     def new_match(self):
         """insert a new match
@@ -188,7 +191,7 @@ class Main(QtCore.QObject):
         if dlg.exec_():
             id1, id2, team1, team2, goals1, goals2, date = dlg.getValues()
             self.data_handler.insert_match(
-             id1, id2, team1, team2, goals1, goals2, date)
+                id1, id2, team1, team2, goals1, goals2, date)
         self.update_main_matches()
 
     def update_match(self):
@@ -197,26 +200,27 @@ class Main(QtCore.QObject):
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
-             )[0].row()
+                )[0].row()
         except Exception:
             id = None
         else:
             id = m[row][0]
         match_of_users = self.data_handler.get_matches(id)
-        dlg = DlgUpdateMatch(self.data_handler.get_users(),
-         match_of_users[self.main.lViewMatches.currentRow()][1],
-         match_of_users[self.main.lViewMatches.currentRow()][2],
-         match_of_users[self.main.lViewMatches.currentRow()][3],
-         match_of_users[self.main.lViewMatches.currentRow()][4],
-         match_of_users[self.main.lViewMatches.currentRow()][5],
-         match_of_users[self.main.lViewMatches.currentRow()][6],
-         match_of_users[self.main.lViewMatches.currentRow()][7])
+        dlg = DlgUpdateMatch(
+            self.data_handler.get_users(),
+            match_of_users[self.main.lViewMatches.currentRow()][1],
+            match_of_users[self.main.lViewMatches.currentRow()][2],
+            match_of_users[self.main.lViewMatches.currentRow()][3],
+            match_of_users[self.main.lViewMatches.currentRow()][4],
+            match_of_users[self.main.lViewMatches.currentRow()][5],
+            match_of_users[self.main.lViewMatches.currentRow()][6],
+            match_of_users[self.main.lViewMatches.currentRow()][7])
 
         if dlg.exec_():
             id1, id2, team1, team2, goals1, goals2, date = dlg.getValues()
             self.data_handler.update_match(match_of_users[
-             self.main.lViewMatches.currentRow()][0], id1, id2, team1,
-             team2, goals1, goals2, date)
+                self.main.lViewMatches.currentRow()][0], id1, id2, team1,
+                team2, goals1, goals2, date)
 
         self.update_main_matches(id)
 
@@ -225,14 +229,14 @@ class Main(QtCore.QObject):
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel(
-             ).selectedIndexes()[0].row()
+                ).selectedIndexes()[0].row()
         except Exception:
             id = None
         else:
             id = m[row][0]
         match_of_users = self.data_handler.get_matches(id)
         self.data_handler.delete_match(match_of_users[
-         self.main.lViewMatches.currentRow()][0])
+            self.main.lViewMatches.currentRow()][0])
 
         self.update_main_matches(id)
 
@@ -243,26 +247,33 @@ class Main(QtCore.QObject):
         self.data_handler.insert_user(self.tr("Emily"))
         self.data_handler.insert_user(self.tr("Jack"))
         self.data_handler.insert_user(self.tr("George"))
-        self.data_handler.insert_match(1, 3, self.tr("Manchester City"),
-         self.tr("Chelsea"), 1, 0, "2002-11-08")
-        self.data_handler.insert_match(2, 5, self.tr("Manchester Utd"),
-         self.tr("Aston Villa"), 2, 2, "2010-07-09")
-        self.data_handler.insert_match(4, 3, self.tr("Chelsea"),
-         self.tr("Tottenham"), 1, 4, "2008-01-24")
-        self.data_handler.insert_match(3, 5, self.tr("Arsenal"),
-         self.tr("Liverpool"), 0, 2, "2011-06-15")
-        self.data_handler.insert_match(5, 1, self.tr("Arsenal"),
-         self.tr("Manchester Utd"), 4, 4, "2001-12-01")
-        self.data_handler.insert_match(4, 2, self.tr("Manchester City"),
-         self.tr("Fulham"), 0, 2, "2011-11-11")
+        self.data_handler.insert_match(
+            1, 3, self.tr("Manchester City"),
+            self.tr("Chelsea"), 1, 0, "2002-11-08")
+        self.data_handler.insert_match(
+            2, 5, self.tr("Manchester Utd"),
+            self.tr("Aston Villa"), 2, 2, "2010-07-09")
+        self.data_handler.insert_match(
+            4, 3, self.tr("Chelsea"),
+            self.tr("Tottenham"), 1, 4, "2008-01-24")
+        self.data_handler.insert_match(
+            3, 5, self.tr("Arsenal"),
+            self.tr("Liverpool"), 0, 2, "2011-06-15")
+        self.data_handler.insert_match(
+            5, 1, self.tr("Arsenal"),
+            self.tr("Manchester Utd"), 4, 4, "2001-12-01")
+        self.data_handler.insert_match(
+            4, 2, self.tr("Manchester City"),
+            self.tr("Fulham"), 0, 2, "2011-11-11")
         self.update_main_users()
 
     def onInfo(self):
         """ Programm Info"""
-        text = self.tr('an alternative to paper-pencil method when recording'
-        'the results. Develop 2012-2013 Markus Hackspacher '
-        'http://github.com/MarkusHackspacher/pyfootballmngr \n'
-        'licence: GNU GPLv3')
+        text = self.tr(
+            'an alternative to paper-pencil method when recording'
+            'the results. Develop 2012-2013 Markus Hackspacher '
+            'http://github.com/MarkusHackspacher/pyfootballmngr \n'
+            'licence: GNU GPLv3')
         a = QtGui.QMessageBox()
         a.setWindowTitle(self.tr('Info'))
         a.setText(text)
@@ -271,8 +282,9 @@ class Main(QtCore.QObject):
 
     def onwebsite(self):
         """ open website """
-        webbrowser.open_new_tab("http://markush.cwsurf.de/"
-         "joomla_17/index.php/python/16-pyfootballmngr/")
+        webbrowser.open_new_tab(
+            "http://markush.cwsurf.de/"
+            "joomla_17/index.php/python/16-pyfootballmngr/")
 
     def onexit(self):
         """exit and close"""
