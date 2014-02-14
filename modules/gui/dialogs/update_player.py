@@ -23,26 +23,30 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from os.path import join
-from PyQt4 import QtCore, QtGui
+try:
+    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+except ImportError:
+    from PyQt4 import QtGui as QtWidgets
+    from PyQt4 import QtGui, QtCore, uic
 
 
-class DlgUpdatePlayer(QtGui.QDialog):
+class DlgUpdatePlayer(QtWidgets.QDialog):
     def __init__(self, old_player_name):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
 
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)
-        self.buttonBox = QtGui.QDialogButtonBox(self)
+        self.buttonBox = QtWidgets.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(
-            QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+            QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
 
-        self.txtName = QtGui.QLineEdit(self)
-        self.label = QtGui.QLabel(self)
+        self.txtName = QtWidgets.QLineEdit(self)
+        self.label = QtWidgets.QLabel(self)
 
-        self.boxLayout = QtGui.QBoxLayout(QtGui.QBoxLayout.TopToBottom, self)
+        self.boxLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.TopToBottom, self)
 
-        gridLayout = QtGui.QGridLayout()
+        gridLayout = QtWidgets.QGridLayout()
         gridLayout.addWidget(self.label, 0, 0, 1, 1)
         gridLayout.addWidget(self.txtName, 0, 1, 1, 1)
 

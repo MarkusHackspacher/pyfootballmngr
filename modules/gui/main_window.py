@@ -23,7 +23,11 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from os.path import join
-from PyQt4 import QtCore, QtGui
+try:
+    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+except ImportError:
+    from PyQt4 import QtGui as QtWidgets
+    from PyQt4 import QtGui, QtCore, uic
 
 
 class PlayerModel(QtCore.QAbstractTableModel):
@@ -58,62 +62,62 @@ class PlayerModel(QtCore.QAbstractTableModel):
 
 
 
-class WndMain(QtGui.QMainWindow):
+class WndMain(QtWidgets.QMainWindow):
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
-        self.centralwidget = QtGui.QWidget(self)
-        self.gridLayout = QtGui.QGridLayout()
-        self.gridLayout_2 = QtGui.QGridLayout(self.centralwidget)
+        self.centralwidget = QtWidgets.QWidget(self)
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
 
-        self.gbPlayers = QtGui.QGroupBox(self.centralwidget)
-        sizePolicy = QtGui.QSizePolicy(
-            QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        self.gbPlayers = QtWidgets.QGroupBox(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
             self.gbPlayers.sizePolicy().hasHeightForWidth())
         self.gbPlayers.setSizePolicy(sizePolicy)
 
-        self.tViewPlayers = QtGui.QTableView(self.gbPlayers)
+        self.tViewPlayers = QtWidgets.QTableView(self.gbPlayers)
         self.tViewPlayers.setSelectionMode(
-            QtGui.QAbstractItemView.SingleSelection)
+            QtWidgets.QAbstractItemView.SingleSelection)
         self.tViewPlayers.setSelectionBehavior(
-            QtGui.QAbstractItemView.SelectRows)
+            QtWidgets.QAbstractItemView.SelectRows)
         self.tViewPlayers.setGridStyle(QtCore.Qt.SolidLine)
 
-        self.verticalLayout_2 = QtGui.QVBoxLayout(self.gbPlayers)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.gbPlayers)
         self.verticalLayout_2.addWidget(self.tViewPlayers)
 
         self.gridLayout.addWidget(self.gbPlayers, 0, 0, 2, 1)
-        self.gbLastMatches = QtGui.QGroupBox(self.centralwidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,
-                                       QtGui.QSizePolicy.Preferred)
+        self.gbLastMatches = QtWidgets.QGroupBox(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
+                                       QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
             self.gbLastMatches.sizePolicy().hasHeightForWidth())
         self.gbLastMatches.setSizePolicy(sizePolicy)
 
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.gbLastMatches)
-        self.lViewMatches = QtGui.QListWidget(self.gbLastMatches)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.gbLastMatches)
+        self.lViewMatches = QtWidgets.QListWidget(self.gbLastMatches)
 
         self.verticalLayout_3.addWidget(self.lViewMatches)
         self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 2)
-        self.gbPlayerInfo = QtGui.QGroupBox(self.centralwidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,
-                                       QtGui.QSizePolicy.Preferred)
+        self.gbPlayerInfo = QtWidgets.QGroupBox(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
+                                       QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
             self.gbPlayerInfo.sizePolicy().hasHeightForWidth())
         self.gbPlayerInfo.setSizePolicy(sizePolicy)
 
-        self.verticalLayout = QtGui.QVBoxLayout(self.gbPlayerInfo)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.gbPlayerInfo)
 
-        self.lblInfo1 = QtGui.QLabel(self.gbPlayerInfo)
-        self.lblInfo2 = QtGui.QLabel(self.gbPlayerInfo)
-        self.lblInfo3 = QtGui.QLabel(self.gbPlayerInfo)
+        self.lblInfo1 = QtWidgets.QLabel(self.gbPlayerInfo)
+        self.lblInfo2 = QtWidgets.QLabel(self.gbPlayerInfo)
+        self.lblInfo3 = QtWidgets.QLabel(self.gbPlayerInfo)
 
         self.verticalLayout.addWidget(self.lblInfo1)
         self.verticalLayout.addWidget(self.lblInfo2)
@@ -123,22 +127,22 @@ class WndMain(QtGui.QMainWindow):
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.setCentralWidget(self.centralwidget)
 
-        self.menubar = QtGui.QMenuBar(self)
+        self.menubar = QtWidgets.QMenuBar(self)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 747, 21))
 
         self.setMenuBar(self.menubar)
-        self.actionAdd_Player = QtGui.QAction(self)
-        self.actionUpdate_Player = QtGui.QAction(self)
-        self.actionRemove_Player = QtGui.QAction(self)
-        self.actionAdd_Match = QtGui.QAction(self)
-        self.actionUpdate_Match = QtGui.QAction(self)
-        self.actionRemove_Match = QtGui.QAction(self)
-        self.actionExampleData = QtGui.QAction(self)
-        self.actionGo_to_the_website = QtGui.QAction(self)
-        self.actionAbout = QtGui.QAction(self)
-        self.actionExit = QtGui.QAction(self)
+        self.actionAdd_Player = QtWidgets.QAction(self)
+        self.actionUpdate_Player = QtWidgets.QAction(self)
+        self.actionRemove_Player = QtWidgets.QAction(self)
+        self.actionAdd_Match = QtWidgets.QAction(self)
+        self.actionUpdate_Match = QtWidgets.QAction(self)
+        self.actionRemove_Match = QtWidgets.QAction(self)
+        self.actionExampleData = QtWidgets.QAction(self)
+        self.actionGo_to_the_website = QtWidgets.QAction(self)
+        self.actionAbout = QtWidgets.QAction(self)
+        self.actionExit = QtWidgets.QAction(self)
 
-        self.menuFile = QtGui.QMenu(self.menubar)
+        self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setTitle(self.tr("File"))
 
         self.menuFile.addAction(self.actionAdd_Player)
@@ -154,15 +158,20 @@ class WndMain(QtGui.QMainWindow):
         self.menuFile.addAction(self.actionExit)
         self.menubar.addAction(self.menuFile.menuAction())
 
-        self.menu_help = QtGui.QMenu(self.menubar)
+        self.menu_help = QtWidgets.QMenu(self.menubar)
         self.menu_help.setTitle(self.tr("Help"))
 
         self.menu_help.addAction(self.actionGo_to_the_website)
         self.menu_help.addAction(self.actionAbout)
         self.menubar.addAction(self.menu_help.menuAction())
 
-        self.tViewPlayers.horizontalHeader().setResizeMode(
-            QtGui.QHeaderView.Stretch)
+        try:
+            self.tViewPlayers.horizontalHeader().setResizeMode(
+                QtGui.QHeaderView.Stretch)
+        except:
+            self.tViewPlayers.horizontalHeader().setSectionResizeMode(
+                QtWidgets.QHeaderView.Stretch)
+
 
         self.setWindowTitle(self.tr("Football statistics manager"))
         self.gbPlayers.setTitle(self.tr("Players"))

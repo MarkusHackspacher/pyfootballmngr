@@ -24,7 +24,13 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
 from os.path import join
 import webbrowser
-from PyQt4 import QtCore, QtGui
+try:
+    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+    print ("pyQt5")
+except ImportError:
+    from PyQt4 import QtGui as QtWidgets
+    from PyQt4 import QtGui, QtCore, uic
+    print ("pyQt4")
 
 from modules.gui.main_window import WndMain
 from modules.gui.dialogs.new_player import DlgNewPlayer
@@ -42,7 +48,7 @@ class Main(QtCore.QObject):
         @return: none
         """
         QtCore.QObject.__init__(self)
-        self.app = QtGui.QApplication([])
+        self.app = QtWidgets.QApplication([])
         if len(arguments) > 1:
             locale = arguments[1]
         else:
@@ -142,7 +148,7 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
-            a = QtGui.QMessageBox()
+            a = QtWidgets.QMessageBox()
             a.setWindowTitle(self.tr('Info'))
             a.setText(self.tr('no player selected'))
             a.exec_()
@@ -166,7 +172,7 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
-            a = QtGui.QMessageBox()
+            a = QtWidgets.QMessageBox()
             a.setWindowTitle(self.tr('Info'))
             a.setText(self.tr('no player selected'))
             a.exec_()
@@ -181,7 +187,7 @@ class Main(QtCore.QObject):
             index = QtCore.QModelIndex(
                 self.main.tViewPlayers.model().index(row - 1, 0))
             self.main.tViewPlayers.selectionModel().setCurrentIndex(
-                index, QtGui.QItemSelectionModel.SelectCurrent)
+                index, QtWidgets.QItemSelectionModel.SelectCurrent)
 
     def new_match(self):
         """insert a new match

@@ -23,7 +23,11 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from os.path import join
-from PyQt4 import QtCore, QtGui
+try:
+    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+except ImportError:
+    from PyQt4 import QtGui as QtWidgets
+    from PyQt4 import QtGui, QtCore, uic
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -31,7 +35,7 @@ except AttributeError:
     _fromUtf8 = lambda s: s
 
 
-class DlgUpdateMatch(QtGui.QDialog):
+class DlgUpdateMatch(QtWidgets.QDialog):
     def __init__(self, data_of_users, id1, id2, team1, team2, goals1, goals2, date):
         """open Update Match dialog
         @type data_of_users: list
@@ -43,33 +47,33 @@ class DlgUpdateMatch(QtGui.QDialog):
         @type goals2: int
         @type date: date
         """
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
 
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)
-        self.buttonBox = QtGui.QDialogButtonBox(self)
+        self.buttonBox = QtWidgets.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel |
-                                          QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel |
+                                          QtWidgets.QDialogButtonBox.Ok)
 
-        self.id1 = QtGui.QComboBox(self)
-        self.id2 = QtGui.QComboBox(self)
+        self.id1 = QtWidgets.QComboBox(self)
+        self.id2 = QtWidgets.QComboBox(self)
         for user in data_of_users:
             self.id1.addItem(user[1])
             self.id2.addItem(user[1])
-        self.team1 = QtGui.QLineEdit(self)
-        self.team2 = QtGui.QLineEdit(self)
-        self.goals1 = QtGui.QSpinBox(self)
-        self.goals2 = QtGui.QSpinBox(self)
-        self.users = QtGui.QLabel(self)
-        self.team = QtGui.QLabel(self)
-        self.goal = QtGui.QLabel(self)
-        self.date_match = QtGui.QLabel(self)
-        self.calendarWidget = QtGui.QCalendarWidget(self)
+        self.team1 = QtWidgets.QLineEdit(self)
+        self.team2 = QtWidgets.QLineEdit(self)
+        self.goals1 = QtWidgets.QSpinBox(self)
+        self.goals2 = QtWidgets.QSpinBox(self)
+        self.users = QtWidgets.QLabel(self)
+        self.team = QtWidgets.QLabel(self)
+        self.goal = QtWidgets.QLabel(self)
+        self.date_match = QtWidgets.QLabel(self)
+        self.calendarWidget = QtWidgets.QCalendarWidget(self)
 
-        self.boxLayout = QtGui.QBoxLayout(QtGui.QBoxLayout.TopToBottom, self)
+        self.boxLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.TopToBottom, self)
 
-        gridLayout = QtGui.QGridLayout()
+        gridLayout = QtWidgets.QGridLayout()
         gridLayout.addWidget(self.users, 0, 0, 1, 1)
         gridLayout.addWidget(self.id1, 0, 1, 1, 1)
         gridLayout.addWidget(self.id2, 0, 2, 1, 1)
