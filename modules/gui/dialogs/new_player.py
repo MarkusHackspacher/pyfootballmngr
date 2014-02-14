@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2013> Markus Hackspacher
+Copyright (C) <2012-2014> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -43,7 +43,8 @@ class DlgNewPlayer(QtWidgets.QDialog):
         self.txtName = QtWidgets.QLineEdit(self)
         self.label = QtWidgets.QLabel(self)
 
-        self.boxLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.TopToBottom, self)
+        self.boxLayout = QtWidgets.QBoxLayout(
+            QtWidgets.QBoxLayout.TopToBottom, self)
 
         gridLayout = QtWidgets.QGridLayout()
         gridLayout.addWidget(self.label, 0, 0, 1, 1)

@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2013> Markus Hackspacher
+Copyright (C) <2012-2014> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -61,7 +61,6 @@ class PlayerModel(QtCore.QAbstractTableModel):
         return self.data[QModelIndex.row()][QModelIndex.column()]
 
 
-
 class WndMain(QtWidgets.QMainWindow):
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
@@ -92,7 +91,7 @@ class WndMain(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.gbPlayers, 0, 0, 2, 1)
         self.gbLastMatches = QtWidgets.QGroupBox(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
-                                       QtWidgets.QSizePolicy.Preferred)
+                                           QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
@@ -106,7 +105,7 @@ class WndMain(QtWidgets.QMainWindow):
         self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 2)
         self.gbPlayerInfo = QtWidgets.QGroupBox(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
-                                       QtWidgets.QSizePolicy.Preferred)
+                                           QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
@@ -171,7 +170,6 @@ class WndMain(QtWidgets.QMainWindow):
         except:
             self.tViewPlayers.horizontalHeader().setSectionResizeMode(
                 QtWidgets.QHeaderView.Stretch)
-
 
         self.setWindowTitle(self.tr("Football statistics manager"))
         self.gbPlayers.setTitle(self.tr("Players"))

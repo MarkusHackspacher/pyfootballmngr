@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2013> Markus Hackspacher
+Copyright (C) <2012-2014> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -61,7 +61,8 @@ class DlgNewMatch(QtWidgets.QDialog):
         self.date_match = QtWidgets.QLabel(self)
         self.calendarWidget = QtWidgets.QCalendarWidget(self)
 
-        self.boxLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.TopToBottom, self)
+        self.boxLayout = QtWidgets.QBoxLayout(
+            QtWidgets.QBoxLayout.TopToBottom, self)
 
         gridLayout = QtWidgets.QGridLayout()
         gridLayout.addWidget(self.users, 0, 0, 1, 1)

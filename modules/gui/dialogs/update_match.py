@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2013> Markus Hackspacher
+Copyright (C) <2012-2014> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -36,7 +36,8 @@ except AttributeError:
 
 
 class DlgUpdateMatch(QtWidgets.QDialog):
-    def __init__(self, data_of_users, id1, id2, team1, team2, goals1, goals2, date):
+    def __init__(
+            self, data_of_users, id1, id2, team1, team2, goals1, goals2, date):
         """open Update Match dialog
         @type data_of_users: list
         @type id1: int
@@ -71,7 +72,8 @@ class DlgUpdateMatch(QtWidgets.QDialog):
         self.date_match = QtWidgets.QLabel(self)
         self.calendarWidget = QtWidgets.QCalendarWidget(self)
 
-        self.boxLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.TopToBottom, self)
+        self.boxLayout = QtWidgets.QBoxLayout(
+            QtWidgets.QBoxLayout.TopToBottom, self)
 
         gridLayout = QtWidgets.QGridLayout()
         gridLayout.addWidget(self.users, 0, 0, 1, 1)
