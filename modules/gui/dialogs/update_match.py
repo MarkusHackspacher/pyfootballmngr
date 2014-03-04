@@ -121,11 +121,11 @@ class DlgUpdateMatch(QtWidgets.QDialog):
         try:
             team1_utf8 = unicode(self.team1.text())
         except:
-            team1_utf8 = team1
+            team1_utf8 = self.team1.text()
         try:
             team2_utf8 = unicode(self.team2.text())
         except:
-            team2_utf8 = team2
+            team2_utf8 = self.team2.text()
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
             str(self.data_of_users[self.id2.currentIndex()][0]), \
             team1_utf8, team2_utf8, self.goals1.value(), \

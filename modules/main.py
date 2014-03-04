@@ -103,7 +103,7 @@ class Main(QtCore.QObject):
             id = m[row][0]
 
         match_of_users = self.data_handler.get_matches(id)
-        text = u"{0} - {1}  {2}".format(
+        text = "{0} - {1}  {2}".format(
             self.data_handler.get_users(match_of_users[
                 self.main.lViewMatches.currentRow()][1])[0][0],
             self.data_handler.get_users(match_of_users[
