@@ -16,6 +16,8 @@ or [Qt5 for Python](http://www.riverbankcomputing.com/software/pyqt/download5).
 Start with:
 ```python pyfootballmngr.py```
 
+![Image](misc/pyfootballmngr.png "pyfootballmngr screenshot.")
+
 Installieren:
 -------------
 
