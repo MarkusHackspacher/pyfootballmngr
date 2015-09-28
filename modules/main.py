@@ -1,26 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-"""
-pyfootballmngr
+# pyfootballmngr
 
-Copyright (C) <2012-2014> Markus Hackspacher
+# Copyright (C) <2012-2014> Markus Hackspacher
 
-This file is part of pyfootballmngr.
+# This file is part of pyfootballmngr.
 
-pyfootballmngr is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+# pyfootballmngr is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 
-pyfootballmngr is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
+# pyfootballmngr is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
-"""
+# You should have received a copy of the GNU General Public License
+# along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
 from os.path import join
 import webbrowser
@@ -289,8 +287,8 @@ class Main(QtCore.QObject):
     def onwebsite(self):
         """ open website """
         webbrowser.open_new_tab(
-            "http://markush.cwsurf.de/"
-            "joomla_17/index.php/python/16-pyfootballmngr/")
+            "http://ratgeber---forum.de/wbb3/"
+            "index.php?page=Thread&threadID=4829")
 
     def onexit(self):
         """exit and close"""
