@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2014> Markus Hackspacher
+# Copyright (C) <2012-2015> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -274,8 +274,8 @@ class Main(QtCore.QObject):
     def onInfo(self):
         """ Programm Info"""
         text = self.tr(
-            'an alternative to paper-pencil method when recording'
-            'the results. Develop 2012-2013 Markus Hackspacher '
+            'an alternative to paper-pencil method for recording '
+            'results. Develop 2012-2015 Markus Hackspacher '
             'http://github.com/MarkusHackspacher/pyfootballmngr \n'
             'licence: GNU GPLv3')
         a = QtGui.QMessageBox()

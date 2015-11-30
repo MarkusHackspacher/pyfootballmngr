@@ -1,10 +1,9 @@
-==============
 pyfootballmngr
 ==============
 
-eine Alternative zur Stift&Papier-Methode beim Notieren der Ergebnisse.
+an alternative to paper-pencil method for recording results.
 
-Ein Fork von http://sourceforge.net/p/pyfootballmngr
+a fork from http://sourceforge.net/p/pyfootballmngr
 
 install:
 --------
@@ -18,17 +17,26 @@ Start with:
 
 ![Image](misc/pyfootballmngr.png "pyfootballmngr screenshot.")
 
-Installieren:
--------------
+translation
+-----------
 
-Das Programm benötigt [Python  2.7 oder 3.x](http://www.python.org/download/) 
-und [Qt4 für Python](http://www.riverbankcomputing.com/software/pyqt/download) 
-oder [Qt5 für Python](http://www.riverbankcomputing.com/software/pyqt/download5).
+To translate the program or make a translation in your language,
+insert in the complete.pro your language code.
 
-Start mit: 
-```python pyfootballmngr.py```
+```
+cd modules
+pylupdate5 complete.pro
+```
 
-Lizenz: 
--------
+translate your language file: pyfbm_xx.ts, and produce the .ts translation files to .qm with
+
+```
+lrelease complete.pro
+```
+
+fill free to add your language in complete.pro.
+
+license: 
+--------
 
 GNU GPLv3
