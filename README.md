@@ -15,7 +15,7 @@ or [Qt5 for Python](http://www.riverbankcomputing.com/software/pyqt/download5).
 Start with:
 ```python pyfootballmngr.py```
 
-![Image](misc/pyfootballmngr.png "pyfootballmngr screenshot.")
+![Image](misc/pyfootballmngr_en.png "pyfootballmngr screenshot.")
 
 translation
 -----------
@@ -36,7 +36,12 @@ lrelease complete.pro
 
 fill free to add your language in complete.pro.
 
+![Image](misc/pyfbm_updatematch_en.png "pyfootballmngr updatematch screenshot.")
+
 license: 
 --------
 
 GNU GPLv3
+
+![Image](misc/pyfootballmngr.png "pyfootballmngr Qt4 screenshot.")
+
