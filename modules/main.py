@@ -274,11 +274,11 @@ class Main(QtCore.QObject):
     def onInfo(self):
         """ Programm Info"""
         text = self.tr(
-            'an alternative to paper-pencil method for recording '
-            'results. Develop 2012-2015 Markus Hackspacher '
-            'http://github.com/MarkusHackspacher/pyfootballmngr \n'
+            'an alternative to paper-pencil method for recording results.\n'
+            '2012-2015 Markus Hackspacher\n'
+            'http://github.com/MarkusHackspacher/pyfootballmngr\n'
             'licence: GNU GPLv3')
-        a = QtGui.QMessageBox()
+        a = QtWidgets.QMessageBox()
         a.setWindowTitle(self.tr('Info'))
         a.setText(text)
         a.setInformativeText('')
