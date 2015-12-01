@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2014> Markus Hackspacher
+Copyright (C) <2012-2015> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -28,11 +28,6 @@ try:
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
     from PyQt4 import QtGui, QtCore, uic
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
 
 
 class DlgUpdateMatch(QtWidgets.QDialog):

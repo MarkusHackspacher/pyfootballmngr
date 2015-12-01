@@ -4,27 +4,27 @@
 <context>
     <name>DlgNewMatch</name>
     <message>
-        <location filename="gui/dialogs/new_match.py" line="86"/>
+        <location filename="gui/dialogs/new_match.py" line="81"/>
         <source>Team</source>
         <translation>Mannschaft</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/new_match.py" line="87"/>
+        <location filename="gui/dialogs/new_match.py" line="82"/>
         <source>Goals</source>
         <translation>Tore</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/new_match.py" line="88"/>
+        <location filename="gui/dialogs/new_match.py" line="83"/>
         <source>Date of the match</source>
         <translation>Datum des Spiels</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/new_match.py" line="89"/>
+        <location filename="gui/dialogs/new_match.py" line="84"/>
         <source>New Match Dialog</source>
         <translation>Neues Spiel</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/new_match.py" line="85"/>
+        <location filename="gui/dialogs/new_match.py" line="80"/>
         <source>Player</source>
         <translation>Spieler</translation>
     </message>
@@ -45,27 +45,27 @@
 <context>
     <name>DlgUpdateMatch</name>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="96"/>
+        <location filename="gui/dialogs/update_match.py" line="91"/>
         <source>Player</source>
         <translation>Spieler</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="97"/>
+        <location filename="gui/dialogs/update_match.py" line="92"/>
         <source>Team</source>
         <translation>Mannschaft</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="98"/>
+        <location filename="gui/dialogs/update_match.py" line="93"/>
         <source>Goals</source>
         <translation>Tore</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="99"/>
+        <location filename="gui/dialogs/update_match.py" line="94"/>
         <source>Date of the match</source>
         <translation>Datum des Spiels</translation>
     </message>
     <message>
-        <location filename="gui/dialogs/update_match.py" line="100"/>
+        <location filename="gui/dialogs/update_match.py" line="95"/>
         <source>Update Match Dialog</source>
         <translation>Spiel aktualisieren</translation>
     </message>
@@ -99,13 +99,6 @@
         <location filename="main.py" line="175"/>
         <source>no player selected</source>
         <translation>kein Spieler ausgewählt</translation>
-    </message>
-    <message>
-        <location filename="main.py" line="276"/>
-        <source>an alternative to paper-pencil method when recordingthe results. Develop 2012-2013 Markus Hackspacher http://github.com/MarkusHackspacher/pyfootballmngr 
-licence: GNU GPLv3</source>
-        <translation type="obsolete">eine Alternative zur Stift&amp;Papier-Methode beim Notieren der Ergebnisse. 2012-2013 von Markus Hackspacher http://github.com/MarkusHackspacher/pyfootballmngr 
-Lizenz: GNU GPLv3</translation>
     </message>
     <message>
         <location filename="main.py" line="249"/>
@@ -174,9 +167,13 @@ Lizenz: GNU GPLv3</translation>
     </message>
     <message>
         <location filename="main.py" line="276"/>
-        <source>an alternative to paper-pencil method for recording results. Develop 2012-2015 Markus Hackspacher http://github.com/MarkusHackspacher/pyfootballmngr 
+        <source>an alternative to paper-pencil method for recording results.
+2012-2015 Markus Hackspacher
+http://github.com/MarkusHackspacher/pyfootballmngr
 licence: GNU GPLv3</source>
-        <translation>eine Alternative zur Stift &amp; Papier-Methode beim Notieren der Ergebnisse. 2012-2015 von Markus Hackspacher http://github.com/MarkusHackspacher/pyfootballmngr 
+        <translation>eine Alternative zur Stift &amp; Papier-Methode beim Notieren der Ergebnisse.
+2012-2015 von Markus Hackspacher
+http://github.com/MarkusHackspacher/pyfootballmngr
 Lizenz: GNU GPLv3</translation>
     </message>
 </context>

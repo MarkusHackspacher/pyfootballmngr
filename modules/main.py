@@ -20,15 +20,16 @@
 # You should have received a copy of the GNU General Public License
 # along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 from os.path import join
 import webbrowser
 try:
     from PyQt5 import QtGui, QtCore, QtWidgets, uic
-    print ("pyQt5")
+    print("pyQt5")
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
     from PyQt4 import QtGui, QtCore, uic
-    print ("pyQt4")
+    print("pyQt4")
 
 from modules.gui.main_window import WndMain
 from modules.gui.dialogs.new_player import DlgNewPlayer
@@ -36,6 +37,9 @@ from modules.gui.dialogs.update_player import DlgUpdatePlayer
 from modules.gui.dialogs.new_match import DlgNewMatch
 from modules.gui.dialogs.update_match import DlgUpdateMatch
 from modules.datahandler import Datahandler
+
+if sys.version_info < (3, 0):
+    str = unicode
 
 
 class Main(QtCore.QObject):
@@ -54,7 +58,7 @@ class Main(QtCore.QObject):
                 locale = unicode(QtCore.QLocale.system().name())
             except:
                 locale = QtCore.QLocale.system().name()
-            print ("locale: " + locale)
+            print("locale: " + locale)
         translator = QtCore.QTranslator(self.app)
         translator.load(join("modules", "pyfbm_" + locale))
         self.app.installTranslator(translator)
@@ -101,7 +105,7 @@ class Main(QtCore.QObject):
             id = m[row][0]
 
         match_of_users = self.data_handler.get_matches(id)
-        text = "{0} - {1}  {2}".format(
+        text = str("{0} - {1}  {2}").format(
             self.data_handler.get_users(match_of_users[
                 self.main.lViewMatches.currentRow()][1])[0][0],
             self.data_handler.get_users(match_of_users[

@@ -1,6 +1,9 @@
 pyfootballmngr
 ==============
 
+[![Build Status](https://drone.io/github.com/MarkusHackspacher/pyfootballmngr/status.png)]
+(https://drone.io/github.com/MarkusHackspacher/pyfootballmngr/latest)
+
 an alternative to paper-pencil method for recording results.
 
 a fork from http://sourceforge.net/p/pyfootballmngr
