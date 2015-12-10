@@ -27,11 +27,17 @@ import itertools
 
 class Datahandler(object):
     def __init__(self, path):
+        """class init
+
+        @type path: string
+        @return: none
+        """
         self.connection = sqlite3.connect(path)
         self.connection.row_factory = sqlite3.Row
         self.create_tables()
 
     def create_tables(self):
+        """create tables with a id"""
         c = self.connection.cursor()
         c.execute(
             "create table if not exists users "
@@ -45,6 +51,9 @@ class Datahandler(object):
         c.close()
 
     def insert_user(self, name):
+        """Save the name in database
+        @type name: string
+        """
         try:
             name_utf8 = unicode(name)
         except:
@@ -103,7 +112,7 @@ class Datahandler(object):
         c = self.connection.cursor()
         c.execute(
             "insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
-            (id1, id2, team1, team2, goals1, goals2, date))
+            (id1, id2, team1_utf8, team2_utf8, goals1, goals2, date))
         self.connection.commit()
         c.close()
 
@@ -190,4 +199,5 @@ class Datahandler(object):
         return sorted(teams)
 
     def close(self):
+        """close connection of database"""
         self.connection.close()

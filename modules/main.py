@@ -24,11 +24,11 @@ import sys
 from os.path import join
 import webbrowser
 try:
-    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+    from PyQt5 import QtCore, QtWidgets
     print("pyQt5")
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
-    from PyQt4 import QtGui, QtCore, uic
+    from PyQt4 import QtCore
     print("pyQt4")
 
 from modules.gui.main_window import WndMain
