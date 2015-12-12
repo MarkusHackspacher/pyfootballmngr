@@ -43,6 +43,9 @@ if sys.version_info < (3, 0):
 
 
 class Main(QtCore.QObject):
+    """
+    main
+    """
     def __init__(self, arguments):
         """open the GUI
         @param arguments: language (en, de)

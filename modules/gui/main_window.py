@@ -29,14 +29,40 @@ except ImportError:
 
 
 class PlayerModel(QtCore.QAbstractTableModel):
+    """
+    Method rowCount, headerData and columnCount
+    of class modules.gui.main_window.PlayerModel
+    overrides method
+    of class PyQt5.QtCore.QAbstractItemModel.QAbstractItemModel.
+    """
     def __init__(self, data, parent=None):
+        """initial Player Model
+
+        :param data:
+        :param parent:
+        :return:
+        """
         QtCore.QAbstractTableModel.__init__(self, parent)
         self.data = data
 
     def rowCount(self, QModelIndex_parent=None, *args, **kwargs):
+        """overrides method of class PyQt5.QtCore.QAbstractItemModel.QAbstractItemModel
+
+        :param QModelIndex_parent:
+        :param args:
+        :param kwargs:
+        :return:
+        """
         return len(self.data)
 
     def headerData(self, p_int, Qt_Orientation, int_role=None):
+        """overrides method of class PyQt5.QtCore.QAbstractItemModel.QAbstractItemModel
+
+        :param p_int:
+        :param Qt_Orientation:
+        :param int_role:
+        :return:
+        """
         headers = {
             0: self.tr("ID"),
             1: self.tr("Username"),
@@ -46,12 +72,25 @@ class PlayerModel(QtCore.QAbstractTableModel):
             return headers[p_int]
 
     def columnCount(self, QModelIndex_parent=None, *args, **kwargs):
+        """overrides method of class PyQt5.QtCore.QAbstractItemModel.QAbstractItemModel
+
+        :param QModelIndex_parent:
+        :param args:
+        :param kwargs:
+        :return:
+        """
         if self.data:
             return len(self.data[0])
         else:
             return 0
 
     def data(self, QModelIndex, int_role=None):
+        """
+
+        :param QModelIndex:
+        :param int_role:
+        :return:
+        """
         if not QModelIndex.isValid():
             return None
         elif int_role != QtCore.Qt.DisplayRole:
