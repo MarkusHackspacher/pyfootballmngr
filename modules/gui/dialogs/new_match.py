@@ -22,12 +22,16 @@ You should have received a copy of the GNU General Public License
 along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import sys
 from os.path import join
 try:
     from PyQt5 import QtGui, QtCore, QtWidgets, uic
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
     from PyQt4 import QtGui, QtCore, uic
+
+if sys.version_info < (3, 0):
+    str = unicode
 
 
 class DlgNewMatch(QtWidgets.QDialog):
@@ -89,15 +93,7 @@ class DlgNewMatch(QtWidgets.QDialog):
 
     def get_values(self):
         """id1, id2, team1, team2, goals1, goals2, date"""
-        try:
-            team1_utf8 = unicode(self.team1.text())
-        except:
-            team1_utf8 = team1
-        try:
-            team2_utf8 = unicode(self.team2.text())
-        except:
-            team2_utf8 = team2
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
             str(self.data_of_users[self.id2.currentIndex()][0]), \
-            team1_utf8, team2_utf8, self.goals1.value(), self.goals2.value(), \
+            str(self.team1.text()), str(self.team2.text()), self.goals1.value(), self.goals2.value(), \
             self.calendarWidget.selectedDate().toPyDate()

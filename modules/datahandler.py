@@ -20,9 +20,13 @@
 # You should have received a copy of the GNU General Public License
 # along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
 import sqlite3
 import datetime
 import itertools
+
+if sys.version_info < (3, 0):
+    str = unicode
 
 
 class Datahandler(object):
@@ -59,12 +63,8 @@ class Datahandler(object):
         :param name:
         :return:
         """
-        try:
-            name_utf8 = unicode(name)
-        except:
-            name_utf8 = name
         c = self.connection.cursor()
-        c.execute("insert into users values (NULL, ?, ?, ?)", (name_utf8,
+        c.execute("insert into users values (NULL, ?, ?, ?)", (str(name),
                   datetime.datetime.now().strftime("%d.%m.20%y"), None))
         self.connection.commit()
         c.close()
@@ -138,18 +138,10 @@ class Datahandler(object):
         :param date:
         :return:
         """
-        try:
-            team1_utf8 = unicode(team1)
-        except:
-            team1_utf8 = team1
-        try:
-            team2_utf8 = unicode(team2)
-        except:
-            team2_utf8 = team2
         c = self.connection.cursor()
         c.execute(
             "insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
-            (id1, id2, team1_utf8, team2_utf8, goals1, goals2, date))
+            (id1, id2, str(team1), str(team2), goals1, goals2, date))
         self.connection.commit()
         c.close()
 

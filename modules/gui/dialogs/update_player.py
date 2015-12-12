@@ -22,6 +22,7 @@ You should have received a copy of the GNU General Public License
 along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import sys
 from os.path import join
 try:
     from PyQt5 import QtGui, QtCore, QtWidgets, uic
@@ -29,9 +30,20 @@ except ImportError:
     from PyQt4 import QtGui as QtWidgets
     from PyQt4 import QtGui, QtCore, uic
 
+if sys.version_info < (3, 0):
+    str = unicode
+
 
 class DlgUpdatePlayer(QtWidgets.QDialog):
+    """
+    Update Player Dialog
+    """
     def __init__(self, old_player_name):
+        """init Player Dialog
+
+        :param old_player_name:
+        :return:
+        """
         QtWidgets.QDialog.__init__(self)
 
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
@@ -63,9 +75,8 @@ class DlgUpdatePlayer(QtWidgets.QDialog):
         self.buttonBox.rejected.connect(self.close)
 
     def get_values(self):
-        """return new playername in unicode"""
-        try:
-            name_utf8 = unicode(self.txtName.text())
-        except:
-            name_utf8 = self.txtName.text()
-        return name_utf8
+        """return new playername in unicode
+
+        :return: playername
+        """
+        return str(self.txtName.text())
