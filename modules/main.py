@@ -54,10 +54,7 @@ class Main(QtCore.QObject):
         if len(arguments) > 1:
             locale = arguments[1]
         else:
-            try:
-                locale = unicode(QtCore.QLocale.system().name())
-            except:
-                locale = QtCore.QLocale.system().name()
+            locale = str(QtCore.QLocale.system().name())
             print("locale: " + locale)
         translator = QtCore.QTranslator(self.app)
         translator.load(join("modules", "pyfbm_" + locale))
@@ -69,6 +66,10 @@ class Main(QtCore.QObject):
         self.connect_slots()
 
     def init(self):
+        """initial variable
+
+        :return:
+        """
         self.main = WndMain()
         self.update_main_users()
         self.update_main_matches(0)
@@ -90,11 +91,20 @@ class Main(QtCore.QObject):
         self.main.lViewMatches.clicked.connect(self.match_selected)
 
     def player_selected(self, index):
+        """selected player
+
+        :param index:
+        :return:
+        """
         id = self.model_index_to_id(index.row())
         self.update_main_matches(id)
 
     def match_selected(self, index):
-        """ show informations about a match in information box"""
+        """ show informations about a match in information box
+
+        :param index:
+        :return:
+        """
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
@@ -119,21 +129,33 @@ class Main(QtCore.QObject):
                 self.data_handler.get_diff(id)))
 
     def model_index_to_id(self, row):
+        """model index
+
+        :param row:
+        :return:
+        """
         m = self.main.tViewPlayers.model().data
         return m[row][0]
 
     def update_main_matches(self, id=None):
         """update match table
+
+        :param id:
+        :return:
         """
         self.main.update_matches(self.data_handler.get_matches(id))
 
     def update_main_users(self):
         """update user table
+
+        :return:
         """
         self.main.update_users(self.data_handler.get_users())
 
     def new_player(self):
         """insert a new user
+
+        :return:
         """
         dlg = DlgNewPlayer()
 
@@ -144,6 +166,8 @@ class Main(QtCore.QObject):
 
     def update_player(self):
         """update a user/player name
+
+        :return:
         """
         try:
             m = self.main.tViewPlayers.model().data
@@ -168,6 +192,8 @@ class Main(QtCore.QObject):
 
     def delete_player(self):
         """delete a user
+
+        :return:
         """
         try:
             m = self.main.tViewPlayers.model().data
@@ -193,6 +219,8 @@ class Main(QtCore.QObject):
 
     def new_match(self):
         """insert a new match
+
+        :return:
         """
         dlg = DlgNewMatch(self.data_handler.get_users())
 
@@ -204,6 +232,8 @@ class Main(QtCore.QObject):
 
     def update_match(self):
         """update a match
+
+        :return:
         """
         try:
             m = self.main.tViewPlayers.model().data
@@ -233,7 +263,10 @@ class Main(QtCore.QObject):
         self.update_main_matches(id)
 
     def delete_match(self):
-        """delete a match"""
+        """delete a match
+
+        :return:
+        """
         try:
             m = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel(
@@ -249,7 +282,10 @@ class Main(QtCore.QObject):
         self.update_main_matches(id)
 
     def on_example_data(self):
-        """Load Example Data"""
+        """Load Example Data
+
+        :return:
+        """
         self.data_handler.insert_user(self.tr("Isabelle"))
         self.data_handler.insert_user(self.tr("Max"))
         self.data_handler.insert_user(self.tr("Emily"))
@@ -276,7 +312,10 @@ class Main(QtCore.QObject):
         self.update_main_users()
 
     def on_info(self):
-        """ Programm Info"""
+        """ Programm Info
+
+        :return:
+        """
         text = self.tr(
             'an alternative to paper-pencil method for recording results.\n'
             '2012-2015 Markus Hackspacher\n'
@@ -288,17 +327,27 @@ class Main(QtCore.QObject):
         a.setInformativeText('')
         a.exec_()
 
-    def onwebsite(self):
-        """ open website """
+    @staticmethod
+    def onwebsite():
+        """ open website
+
+        :return:
+        """
         webbrowser.open_new_tab(
             "http://ratgeber---forum.de/wbb3/"
             "index.php?page=Thread&threadID=4829")
 
     def onexit(self):
-        """exit and close"""
+        """exit and close
+
+        :return:
+        """
         self.data_handler.close()
         self.main.close()
 
     def main_loop(self):
-        """application start"""
+        """application start
+
+        :return:
+        """
         self.app.exec_()

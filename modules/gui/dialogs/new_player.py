@@ -35,7 +35,14 @@ if sys.version_info < (3, 0):
 
 
 class DlgNewPlayer(QtWidgets.QDialog):
+    """
+    new player window
+    """
     def __init__(self):
+        """initial new player window
+
+        :return:
+        """
         QtWidgets.QDialog.__init__(self)
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)

@@ -35,7 +35,16 @@ if sys.version_info < (3, 0):
 
 
 class DlgNewMatch(QtWidgets.QDialog):
+    """
+    New match window
+    """
     def __init__(self, data_of_users):
+        """
+        initial new match window
+
+        :param data_of_users:
+        :return:
+        """
         QtWidgets.QDialog.__init__(self)
 
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
@@ -95,5 +104,6 @@ class DlgNewMatch(QtWidgets.QDialog):
         """id1, id2, team1, team2, goals1, goals2, date"""
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
             str(self.data_of_users[self.id2.currentIndex()][0]), \
-            str(self.team1.text()), str(self.team2.text()), self.goals1.value(), self.goals2.value(), \
+            str(self.team1.text()), str(self.team2.text()),\
+            self.goals1.value(), self.goals2.value(),\
             self.calendarWidget.selectedDate().toPyDate()
