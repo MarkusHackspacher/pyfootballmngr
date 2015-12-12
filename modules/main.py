@@ -82,9 +82,9 @@ class Main(QtCore.QObject):
         self.main.actionAdd_Match.triggered.connect(self.new_match)
         self.main.actionUpdate_Match.triggered.connect(self.update_match)
         self.main.actionRemove_Match.triggered.connect(self.delete_match)
-        self.main.actionExampleData.triggered.connect(self.onExampleData)
+        self.main.actionExampleData.triggered.connect(self.on_example_data)
         self.main.actionGo_to_the_website.triggered.connect(self.onwebsite)
-        self.main.actionAbout.triggered.connect(self.onInfo)
+        self.main.actionAbout.triggered.connect(self.on_info)
         self.main.actionExit.triggered.connect(self.onexit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
         self.main.lViewMatches.clicked.connect(self.match_selected)
@@ -138,7 +138,7 @@ class Main(QtCore.QObject):
         dlg = DlgNewPlayer()
 
         if dlg.exec_():
-            user = dlg.getValues()
+            user = dlg.get_values()
             self.data_handler.insert_user(user)
         self.update_main_users()
 
@@ -161,7 +161,7 @@ class Main(QtCore.QObject):
         dlg = DlgUpdatePlayer(m[row][1])
 
         if dlg.exec_():
-            user = dlg.getValues()
+            user = dlg.get_values()
             self.data_handler.update_user(id, user)
 
         self.update_main_users()
@@ -197,7 +197,7 @@ class Main(QtCore.QObject):
         dlg = DlgNewMatch(self.data_handler.get_users())
 
         if dlg.exec_():
-            id1, id2, team1, team2, goals1, goals2, date = dlg.getValues()
+            id1, id2, team1, team2, goals1, goals2, date = dlg.get_values()
             self.data_handler.insert_match(
                 id1, id2, team1, team2, goals1, goals2, date)
         self.update_main_matches()
@@ -225,7 +225,7 @@ class Main(QtCore.QObject):
             match_of_users[self.main.lViewMatches.currentRow()][7])
 
         if dlg.exec_():
-            id1, id2, team1, team2, goals1, goals2, date = dlg.getValues()
+            id1, id2, team1, team2, goals1, goals2, date = dlg.get_values()
             self.data_handler.update_match(match_of_users[
                 self.main.lViewMatches.currentRow()][0], id1, id2, team1,
                 team2, goals1, goals2, date)
@@ -248,7 +248,7 @@ class Main(QtCore.QObject):
 
         self.update_main_matches(id)
 
-    def onExampleData(self):
+    def on_example_data(self):
         """Load Example Data"""
         self.data_handler.insert_user(self.tr("Isabelle"))
         self.data_handler.insert_user(self.tr("Max"))
@@ -275,7 +275,7 @@ class Main(QtCore.QObject):
             self.tr("Fulham"), 0, 2, "2011-11-11")
         self.update_main_users()
 
-    def onInfo(self):
+    def on_info(self):
         """ Programm Info"""
         text = self.tr(
             'an alternative to paper-pencil method for recording results.\n'
@@ -299,6 +299,6 @@ class Main(QtCore.QObject):
         self.data_handler.close()
         self.main.close()
 
-    def mainLoop(self):
+    def main_loop(self):
         """application start"""
         self.app.exec_()

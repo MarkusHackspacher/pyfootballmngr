@@ -47,11 +47,11 @@ class DlgUpdatePlayer(QtWidgets.QDialog):
         self.boxLayout = QtWidgets.QBoxLayout(
             QtWidgets.QBoxLayout.TopToBottom, self)
 
-        gridLayout = QtWidgets.QGridLayout()
-        gridLayout.addWidget(self.label, 0, 0, 1, 1)
-        gridLayout.addWidget(self.txtName, 0, 1, 1, 1)
+        grid_layout = QtWidgets.QGridLayout()
+        grid_layout.addWidget(self.label, 0, 0, 1, 1)
+        grid_layout.addWidget(self.txtName, 0, 1, 1, 1)
 
-        self.boxLayout.addLayout(gridLayout)
+        self.boxLayout.addLayout(grid_layout)
         self.boxLayout.addWidget(self.buttonBox)
 
         self.label.setText(self.tr("Player"))
@@ -62,7 +62,7 @@ class DlgUpdatePlayer(QtWidgets.QDialog):
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.close)
 
-    def getValues(self):
+    def get_values(self):
         """return new playername in unicode"""
         try:
             name_utf8 = unicode(self.txtName.text())

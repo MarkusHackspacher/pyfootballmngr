@@ -3,13 +3,15 @@ pyfootballmngr
 
 [![Build Status](https://drone.io/github.com/MarkusHackspacher/pyfootballmngr/status.png)]
 (https://drone.io/github.com/MarkusHackspacher/pyfootballmngr/latest)
+[![Code Issues](https://www.quantifiedcode.com/api/v1/project/510d01cdfb734c9e96dd65912b38d130/badge.svg)]
+(https://www.quantifiedcode.com/app/project/510d01cdfb734c9e96dd65912b38d130)
 
-an alternative to paper-pencil method for recording results.
+An alternative to paper-pencil method for recording results.
 
-a fork from http://sourceforge.net/p/pyfootballmngr
+Is a fork from http://sourceforge.net/p/pyfootballmngr
 
-install:
---------
+install
+-------
 
 The program requires [Python 2.7 or 3.x](http://www.python.org/download/) 
 and [Qt4 for Python](http://www.riverbankcomputing.com/software/pyqt/download)

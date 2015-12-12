@@ -60,7 +60,14 @@ class PlayerModel(QtCore.QAbstractTableModel):
 
 
 class WndMain(QtWidgets.QMainWindow):
+    """
+    The main window
+    """
     def __init__(self):
+        """
+        setup the main window
+        :return:
+        """
         QtWidgets.QMainWindow.__init__(self)
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.centralwidget = QtWidgets.QWidget(self)
@@ -68,13 +75,13 @@ class WndMain(QtWidgets.QMainWindow):
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
 
         self.gbPlayers = QtWidgets.QGroupBox(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(
+        size_policy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(2)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        size_policy.setHorizontalStretch(2)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(
             self.gbPlayers.sizePolicy().hasHeightForWidth())
-        self.gbPlayers.setSizePolicy(sizePolicy)
+        self.gbPlayers.setSizePolicy(size_policy)
 
         self.tViewPlayers = QtWidgets.QTableView(self.gbPlayers)
         self.tViewPlayers.setSelectionMode(
@@ -88,13 +95,13 @@ class WndMain(QtWidgets.QMainWindow):
 
         self.gridLayout.addWidget(self.gbPlayers, 0, 0, 2, 1)
         self.gbLastMatches = QtWidgets.QGroupBox(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
-                                           QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
+                                            QtWidgets.QSizePolicy.Preferred)
+        size_policy.setHorizontalStretch(1)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(
             self.gbLastMatches.sizePolicy().hasHeightForWidth())
-        self.gbLastMatches.setSizePolicy(sizePolicy)
+        self.gbLastMatches.setSizePolicy(size_policy)
 
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.gbLastMatches)
         self.lViewMatches = QtWidgets.QListWidget(self.gbLastMatches)
@@ -102,13 +109,13 @@ class WndMain(QtWidgets.QMainWindow):
         self.verticalLayout_3.addWidget(self.lViewMatches)
         self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 2)
         self.gbPlayerInfo = QtWidgets.QGroupBox(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
-                                           QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
+                                            QtWidgets.QSizePolicy.Preferred)
+        size_policy.setHorizontalStretch(1)
+        size_policy.setVerticalStretch(0)
+        size_policy.setHeightForWidth(
             self.gbPlayerInfo.sizePolicy().hasHeightForWidth())
-        self.gbPlayerInfo.setSizePolicy(sizePolicy)
+        self.gbPlayerInfo.setSizePolicy(size_policy)
 
         self.verticalLayout = QtWidgets.QVBoxLayout(self.gbPlayerInfo)
 
@@ -189,11 +196,23 @@ class WndMain(QtWidgets.QMainWindow):
         self.actionRemove_Player.setShortcut("Del")
 
     def update_users(self, users):
+        """
+        Open update users window
+
+        :param users:
+        :return:
+        """
         edited = [(id, name, rd) for id, name, rd, last in users]
         m = PlayerModel(edited)
         self.tViewPlayers.setModel(m)
 
     def update_matches(self, matches):
+        """
+        Open update matches window
+
+        :param matches:
+        :return:
+        """
         self.lViewMatches.clear()
         edited = ["%s - %s : %d - %d" % (dat[3], dat[4], dat[5],
                   dat[6]) for dat in matches]

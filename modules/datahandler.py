@@ -26,6 +26,9 @@ import itertools
 
 
 class Datahandler(object):
+    """
+    data management
+    """
     def __init__(self, path):
         """class init
 
@@ -52,7 +55,9 @@ class Datahandler(object):
 
     def insert_user(self, name):
         """Save the name in database
-        @type name: string
+
+        :param name:
+        :return:
         """
         try:
             name_utf8 = unicode(name)
@@ -65,6 +70,13 @@ class Datahandler(object):
         c.close()
 
     def update_user(self, id, name, last=None):
+        """Update user in the database
+
+        :param id:
+        :param name:
+        :param last:
+        :return:
+        """
         c = self.connection.cursor()
         if last:
             c.execute("update users set name=?, last=? where id=?", (
@@ -75,6 +87,11 @@ class Datahandler(object):
         c.close()
 
     def delete_user(self, id):
+        """Delete user in the database
+
+        :param id:
+        :return:
+        """
         c = self.connection.cursor()
         c.execute("delete from users where id=?", (id, ))
         c.execute("delete from matches where pid1=? or pid2=?", (id, id, ))
@@ -82,6 +99,11 @@ class Datahandler(object):
         c.close()
 
     def get_users(self, id=None):
+        """get user from the database
+
+        :param id:
+        :return:
+        """
         c = self.connection.cursor()
         if id:
             c.execute("select name from users where id=?", (id, ))
@@ -93,6 +115,10 @@ class Datahandler(object):
         return data
 
     def get_user_names(self):
+        """get user names from the database
+
+        :return:
+        """
         c = self.connection.cursor()
         c.execute("select name from users")
         self.connection.commit()
@@ -101,6 +127,17 @@ class Datahandler(object):
         return data
 
     def insert_match(self, id1, id2, team1, team2, goals1, goals2, date):
+        """ insert match in the database
+
+        :param id1:
+        :param id2:
+        :param team1:
+        :param team2:
+        :param goals1:
+        :param goals2:
+        :param date:
+        :return:
+        """
         try:
             team1_utf8 = unicode(team1)
         except:
@@ -117,6 +154,18 @@ class Datahandler(object):
         c.close()
 
     def update_match(self, id, id1, id2, team1, team2, goals1, goals2, date):
+        """update match in the database
+
+        :param id:
+        :param id1:
+        :param id2:
+        :param team1:
+        :param team2:
+        :param goals1:
+        :param goals2:
+        :param date:
+        :return:
+        """
         c = self.connection.cursor()
         c.execute(
             "update matches set pid1=?, pid2=?, team1=?, team2=?, "
@@ -126,12 +175,22 @@ class Datahandler(object):
         c.close()
 
     def delete_match(self, id):
+        """delete match in the database
+
+        :param id:
+        :return:
+        """
         c = self.connection.cursor()
         c.execute("delete from matches where id=?", (id,))
         self.connection.commit()
         c.close()
 
     def get_matches(self, id=None):
+        """get match from the database
+
+        :param id:
+        :return:
+        """
         c = self.connection.cursor()
         if id:
             c.execute("select * from matches where pid1=? or pid2=?", (id, id))
@@ -143,6 +202,11 @@ class Datahandler(object):
         return data
 
     def get_diff(self, id):
+        """get difference from the database
+
+        :param id:
+        :return:
+        """
         c = self.connection.cursor()
 
         c.execute("select goals1, goals2 from matches where pid1=?", (id,))
@@ -160,6 +224,11 @@ class Datahandler(object):
         return pos - neg
 
     def get_fav_team(self, id):
+        """get favorite team from the database
+
+        :param id:
+        :return:
+        """
         c = self.connection.cursor()
         c.execute("select team1 from matches where pid1=?", (id,))
         self.connection.commit()
@@ -184,6 +253,10 @@ class Datahandler(object):
                 return k[0]
 
     def get_teams(self):
+        """get teams from the database
+
+        :return:
+        """
         c = self.connection.cursor()
         c.execute("select team1, team2 from matches")
         self.connection.commit()

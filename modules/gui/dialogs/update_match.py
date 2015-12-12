@@ -70,20 +70,20 @@ class DlgUpdateMatch(QtWidgets.QDialog):
         self.boxLayout = QtWidgets.QBoxLayout(
             QtWidgets.QBoxLayout.TopToBottom, self)
 
-        gridLayout = QtWidgets.QGridLayout()
-        gridLayout.addWidget(self.users, 0, 0, 1, 1)
-        gridLayout.addWidget(self.id1, 0, 1, 1, 1)
-        gridLayout.addWidget(self.id2, 0, 2, 1, 1)
-        gridLayout.addWidget(self.team, 1, 0, 1, 1)
-        gridLayout.addWidget(self.team1, 1, 1, 1, 1)
-        gridLayout.addWidget(self.team2, 1, 2, 1, 1)
-        gridLayout.addWidget(self.goal, 2, 0, 1, 1)
-        gridLayout.addWidget(self.goals1, 2, 1, 1, 1)
-        gridLayout.addWidget(self.goals2, 2, 2, 1, 1)
-        gridLayout.addWidget(self.date_match, 3, 0, 1, 1)
-        gridLayout.addWidget(self.calendarWidget, 3, 1, 2, 2)
+        grid_layout = QtWidgets.QGridLayout()
+        grid_layout.addWidget(self.users, 0, 0, 1, 1)
+        grid_layout.addWidget(self.id1, 0, 1, 1, 1)
+        grid_layout.addWidget(self.id2, 0, 2, 1, 1)
+        grid_layout.addWidget(self.team, 1, 0, 1, 1)
+        grid_layout.addWidget(self.team1, 1, 1, 1, 1)
+        grid_layout.addWidget(self.team2, 1, 2, 1, 1)
+        grid_layout.addWidget(self.goal, 2, 0, 1, 1)
+        grid_layout.addWidget(self.goals1, 2, 1, 1, 1)
+        grid_layout.addWidget(self.goals2, 2, 2, 1, 1)
+        grid_layout.addWidget(self.date_match, 3, 0, 1, 1)
+        grid_layout.addWidget(self.calendarWidget, 3, 1, 2, 2)
 
-        self.boxLayout.addLayout(gridLayout)
+        self.boxLayout.addLayout(grid_layout)
         self.boxLayout.addWidget(self.buttonBox)
 
         self.data_of_users = data_of_users
@@ -111,7 +111,7 @@ class DlgUpdateMatch(QtWidgets.QDialog):
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.close)
 
-    def getValues(self):
+    def get_values(self):
         """id1, id2, team1, team2, goals1, goals2, date"""
         try:
             team1_utf8 = unicode(self.team1.text())

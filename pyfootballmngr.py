@@ -28,4 +28,4 @@ from modules import main
 
 if __name__ == "__main__":
     app = main.Main(sys.argv)
-    app.mainLoop()
+    app.main_loop()
