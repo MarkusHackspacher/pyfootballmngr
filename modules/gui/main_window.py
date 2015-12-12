@@ -214,6 +214,6 @@ class WndMain(QtWidgets.QMainWindow):
         :return:
         """
         self.lViewMatches.clear()
-        edited = ["%s - %s : %d - %d" % (dat[3], dat[4], dat[5],
-                  dat[6]) for dat in matches]
+        edited = ["{0!s} - {1!s} : {2:d} - {3:d}".format(dat[3], dat[4],
+                  dat[5], dat[6]) for dat in matches]
         self.lViewMatches.addItems(edited)
