@@ -18,6 +18,7 @@ and [Qt4 for Python](http://www.riverbankcomputing.com/software/pyqt/download)
 or [Qt5 for Python](http://www.riverbankcomputing.com/software/pyqt/download5).
 
 Start with:
+
 ```python pyfootballmngr.py```
 
 ![Image](misc/pyfootballmngr_en.png "pyfootballmngr screenshot.")
@@ -43,8 +44,8 @@ fill free to add your language in complete.pro.
 
 ![Image](misc/pyfbm_updatematch_en.png "pyfootballmngr updatematch screenshot.")
 
-license: 
---------
+license
+-------
 
 GNU GPLv3
 
