@@ -34,6 +34,7 @@ class TestCodeFormat(unittest.TestCase):
         result = pep8style.check_files(['pyfootballmngr.py',
                                         'test/test_pep8.py',
                                         'modules/main.py',
+                                        'modules/datahandler.py',
                                         'modules/gui/main_window.py',
                                         'modules/gui/dialogs/new_match.py',
                                         'modules/gui/dialogs/new_player.py',

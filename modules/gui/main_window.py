@@ -211,7 +211,7 @@ class WndMain(QtWidgets.QMainWindow):
         try:
             self.tViewPlayers.horizontalHeader().setResizeMode(
                 QtGui.QHeaderView.Stretch)
-        except:
+        except AttributeError:
             self.tViewPlayers.horizontalHeader().setSectionResizeMode(
                 QtWidgets.QHeaderView.Stretch)
 

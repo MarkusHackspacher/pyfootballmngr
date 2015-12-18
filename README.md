@@ -10,7 +10,7 @@ An alternative to paper-pencil method for recording results.
 
 Is a fork from http://sourceforge.net/p/pyfootballmngr
 
-install
+Install
 -------
 
 The program requires [Python 2.7 or 3.x](http://www.python.org/download/) 
@@ -23,7 +23,7 @@ Start with:
 
 ![Image](misc/pyfootballmngr_en.png "pyfootballmngr screenshot.")
 
-translation
+Translation
 -----------
 
 To translate the program or make a translation in your language,

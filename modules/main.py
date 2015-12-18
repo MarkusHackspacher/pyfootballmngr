@@ -102,10 +102,9 @@ class Main(QtCore.QObject):
         id = self.model_index_to_id(index.row())
         self.update_main_matches(id)
 
-    def match_selected(self, index):
+    def match_selected(self):
         """ show informations about a match in information box
 
-        :param index:
         :return:
         """
         try:
