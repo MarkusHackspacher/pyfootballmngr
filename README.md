@@ -3,8 +3,6 @@ pyfootballmngr
 
 [![Build Status](https://drone.io/github.com/MarkusHackspacher/pyfootballmngr/status.png)]
 (https://drone.io/github.com/MarkusHackspacher/pyfootballmngr/latest)
-[![Code Issues](https://www.quantifiedcode.com/api/v1/project/510d01cdfb734c9e96dd65912b38d130/badge.svg)]
-(https://www.quantifiedcode.com/app/project/510d01cdfb734c9e96dd65912b38d130)
 
 An alternative to paper-pencil method for recording results.
 
