@@ -336,8 +336,7 @@ class Main(QtCore.QObject):
         :return:
         """
         webbrowser.open_new_tab(
-            "http://ratgeber---forum.de/wbb3/"
-            "index.php?page=Thread&threadID=4829")
+            "http://markushackspacher.github.io/pyfootballmngr/")
 
     def onexit(self):
         """exit and close
