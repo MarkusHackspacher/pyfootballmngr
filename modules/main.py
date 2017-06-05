@@ -182,13 +182,13 @@ class Main(QtCore.QObject):
             a.exec_()
             return
 
-        id = m[row][0]
+        player_id = m[row][0]
 
         dlg = DlgUpdatePlayer(m[row][1])
 
         if dlg.exec_():
             user = dlg.get_values()
-            self.data_handler.update_user(id, user)
+            self.data_handler.update_user(player_id, user)
 
         self.update_main_users()
 
@@ -208,8 +208,8 @@ class Main(QtCore.QObject):
             a.exec_()
             return
 
-        user_id = m[row][0]
-        self.data_handler.delete_user(user_id)
+        player_id = m[row][0]
+        self.data_handler.delete_user(player_id)
 
         self.update_main_users()
 
@@ -242,10 +242,10 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
-            match_id = None
+            player_id = None
         else:
-            match_id = m[row][0]
-        match_of_users = self.data_handler.get_matches(match_id)
+            player_id = m[row][0]
+        match_of_users = self.data_handler.get_matches(player_id)
         dlg = DlgUpdateMatch(
             self.data_handler.get_users(),
             match_of_users[self.main.lViewMatches.currentRow()][1],
@@ -262,7 +262,7 @@ class Main(QtCore.QObject):
                 self.main.lViewMatches.currentRow()][0], id1, id2, team1,
                 team2, goals1, goals2, date)
 
-        self.update_main_matches(match_id)
+        self.update_main_matches(player_id)
 
     def delete_match(self):
         """delete a match
@@ -274,14 +274,14 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel(
                 ).selectedIndexes()[0].row()
         except Exception:
-            match_id = None
+            player_id = None
         else:
-            match_id = m[row][0]
-        match_of_users = self.data_handler.get_matches(match_id)
+            player_id = m[row][0]
+        match_of_users = self.data_handler.get_matches(player_id)
         self.data_handler.delete_match(match_of_users[
             self.main.lViewMatches.currentRow()][0])
 
-        self.update_main_matches(match_id)
+        self.update_main_matches(player_id)
 
     def on_example_data(self):
         """Load Example Data

@@ -85,7 +85,7 @@ class PlayerModel(QtCore.QAbstractTableModel):
             return 0
 
     def data(self, QModelIndex, int_role=None):
-        """
+        """QAbstractTableModel.data() is abstract and must be overridden
 
         :param QModelIndex:
         :param int_role:
