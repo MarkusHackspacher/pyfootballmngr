@@ -99,11 +99,11 @@ class Main(QtCore.QObject):
         :param index:
         :return:
         """
-        id = self.model_index_to_id(index.row())
-        self.update_main_matches(id)
+        match_id = self.model_index_to_id(index.row())
+        self.update_main_matches(match_id)
 
     def match_selected(self):
-        """ show informations about a match in information box
+        """show information about a match in information box
 
         :return:
         """
@@ -112,11 +112,11 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
-            id = None
+            match_id = None
         else:
-            id = m[row][0]
+            match_id = m[row][0]
 
-        match_of_users = self.data_handler.get_matches(id)
+        match_of_users = self.data_handler.get_matches(match_id)
         text = str("{0} - {1}  {2}").format(
             self.data_handler.get_users(match_of_users[
                 self.main.lViewMatches.currentRow()][1])[0][0],
@@ -124,11 +124,11 @@ class Main(QtCore.QObject):
                 self.main.lViewMatches.currentRow()][2])[0][0],
             match_of_users[self.main.lViewMatches.currentRow()][7])
         self.main.lblInfo1.setText(text)
-        if id:
+        if match_id:
             text = self.tr("Goal Difference of")
             self.main.lblInfo2.setText("{0} {1}: {2:+}".format(
-                text, self.data_handler.get_users(id)[0][0],
-                self.data_handler.get_diff(id)))
+                text, self.data_handler.get_users(match_id)[0][0],
+                self.data_handler.get_diff(match_id)))
 
     def model_index_to_id(self, row):
         """model index
@@ -139,13 +139,13 @@ class Main(QtCore.QObject):
         m = self.main.tViewPlayers.model().data
         return m[row][0]
 
-    def update_main_matches(self, id=None):
+    def update_main_matches(self, match_id=None):
         """update match table
 
-        :param id:
+        :param match_id:
         :return:
         """
-        self.main.update_matches(self.data_handler.get_matches(id))
+        self.main.update_matches(self.data_handler.get_matches(match_id))
 
     def update_main_users(self):
         """update user table
@@ -208,8 +208,8 @@ class Main(QtCore.QObject):
             a.exec_()
             return
 
-        id = m[row][0]
-        self.data_handler.delete_user(id)
+        user_id = m[row][0]
+        self.data_handler.delete_user(user_id)
 
         self.update_main_users()
 
@@ -242,10 +242,10 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
-            id = None
+            match_id = None
         else:
-            id = m[row][0]
-        match_of_users = self.data_handler.get_matches(id)
+            match_id = m[row][0]
+        match_of_users = self.data_handler.get_matches(match_id)
         dlg = DlgUpdateMatch(
             self.data_handler.get_users(),
             match_of_users[self.main.lViewMatches.currentRow()][1],
@@ -262,7 +262,7 @@ class Main(QtCore.QObject):
                 self.main.lViewMatches.currentRow()][0], id1, id2, team1,
                 team2, goals1, goals2, date)
 
-        self.update_main_matches(id)
+        self.update_main_matches(match_id)
 
     def delete_match(self):
         """delete a match
@@ -274,14 +274,14 @@ class Main(QtCore.QObject):
             row = self.main.tViewPlayers.selectionModel(
                 ).selectedIndexes()[0].row()
         except Exception:
-            id = None
+            match_id = None
         else:
-            id = m[row][0]
-        match_of_users = self.data_handler.get_matches(id)
+            match_id = m[row][0]
+        match_of_users = self.data_handler.get_matches(match_id)
         self.data_handler.delete_match(match_of_users[
             self.main.lViewMatches.currentRow()][0])
 
-        self.update_main_matches(id)
+        self.update_main_matches(match_id)
 
     def on_example_data(self):
         """Load Example Data

@@ -32,7 +32,7 @@ class TestCodeFormat(unittest.TestCase):
         """Test that code conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=False)
         result = pep8style.check_files(['pyfootballmngr.py',
-                                        'test/test_pep8.py',
+                                        'tests/test_pep8.py',
                                         'modules/main.py',
                                         'modules/datahandler.py',
                                         'modules/gui/main_window.py',

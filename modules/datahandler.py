@@ -69,10 +69,10 @@ class Datahandler(object):
         self.connection.commit()
         c.close()
 
-    def update_user(self, id, name, last=None):
+    def update_user(self, user_id, name, last=None):
         """Update user in the database
 
-        :param id:
+        :param user_id:
         :param name:
         :param last:
         :return:
@@ -80,33 +80,34 @@ class Datahandler(object):
         c = self.connection.cursor()
         if last:
             c.execute("update users set name=?, last=? where id=?", (
-                      name, last, id, ))
+                name, last, user_id, ))
         else:
-            c.execute("update users set name=? where id=?", (name, id, ))
+            c.execute("update users set name=? where id=?", (name, user_id,))
         self.connection.commit()
         c.close()
 
-    def delete_user(self, id):
+    def delete_user(self, user_id):
         """Delete user in the database
 
-        :param id:
+        :param user_id:
         :return:
         """
         c = self.connection.cursor()
-        c.execute("delete from users where id=?", (id, ))
-        c.execute("delete from matches where pid1=? or pid2=?", (id, id, ))
+        c.execute("delete from users where id=?", (user_id,))
+        c.execute("delete from matches where pid1=? or pid2=?",
+                  (user_id, user_id,))
         self.connection.commit()
         c.close()
 
-    def get_users(self, id=None):
+    def get_users(self, user_id=None):
         """get user from the database
 
-        :param id:
+        :param user_id:
         :return:
         """
         c = self.connection.cursor()
-        if id:
-            c.execute("select name from users where id=?", (id, ))
+        if user_id:
+            c.execute("select name from users where id=?", (user_id,))
         else:
             c.execute("select * from users")
         self.connection.commit()
@@ -126,11 +127,12 @@ class Datahandler(object):
         c.close()
         return data
 
-    def insert_match(self, id1, id2, team1, team2, goals1, goals2, date):
+    def insert_match(self, user_id1, user_id2, team1,
+                     team2, goals1, goals2, date):
         """ insert match in the database
 
-        :param id1:
-        :param id2:
+        :param user_id1:
+        :param user_id2:
         :param team1:
         :param team2:
         :param goals1:
@@ -141,14 +143,15 @@ class Datahandler(object):
         c = self.connection.cursor()
         c.execute(
             "insert into matches values(NULL, ?, ?, ?, ?, ?, ?, ?)",
-            (id1, id2, str(team1), str(team2), goals1, goals2, date))
+            (user_id1, user_id2, str(team1), str(team2), goals1, goals2, date))
         self.connection.commit()
         c.close()
 
-    def update_match(self, id, id1, id2, team1, team2, goals1, goals2, date):
+    def update_match(self, match_id, id1, id2, team1, team2,
+                     goals1, goals2, date):
         """update match in the database
 
-        :param id:
+        :param match_id:
         :param id1:
         :param id2:
         :param team1:
@@ -162,30 +165,31 @@ class Datahandler(object):
         c.execute(
             "update matches set pid1=?, pid2=?, team1=?, team2=?, "
             "goals1=?, goals2=?, date=? where id=?",
-            (id1, id2, team1, team2, goals1, goals2, date, id))
+            (id1, id2, team1, team2, goals1, goals2, date, match_id))
         self.connection.commit()
         c.close()
 
-    def delete_match(self, id):
+    def delete_match(self, match_id):
         """delete match in the database
 
-        :param id:
+        :param match_id:
         :return:
         """
         c = self.connection.cursor()
-        c.execute("delete from matches where id=?", (id,))
+        c.execute("delete from matches where id=?", (match_id,))
         self.connection.commit()
         c.close()
 
-    def get_matches(self, id=None):
+    def get_matches(self, user_id=None):
         """get match from the database
 
-        :param id:
+        :param user_id:
         :return:
         """
         c = self.connection.cursor()
-        if id:
-            c.execute("select * from matches where pid1=? or pid2=?", (id, id))
+        if user_id:
+            c.execute("select * from matches where pid1=? or pid2=?",
+                      (user_id, user_id))
         else:
             c.execute("select * from matches")
         self.connection.commit()
@@ -193,19 +197,21 @@ class Datahandler(object):
         c.close()
         return data
 
-    def get_diff(self, id):
+    def get_diff(self, user_id):
         """get difference from the database
 
-        :param id:
+        :param user_id:
         :return:
         """
         c = self.connection.cursor()
 
-        c.execute("select goals1, goals2 from matches where pid1=?", (id,))
+        c.execute("select goals1, goals2 from matches where pid1=?",
+                  (user_id,))
         self.connection.commit()
         first = c.fetchall()
 
-        c.execute("select goals1, goals2 from matches where pid2=?", (id,))
+        c.execute("select goals1, goals2 from matches where pid2=?",
+                  (user_id,))
         self.connection.commit()
         sec = c.fetchall()
         c.close()
@@ -215,18 +221,18 @@ class Datahandler(object):
 
         return pos - neg
 
-    def get_fav_team(self, id):
+    def get_fav_team(self, user_id):
         """get favorite team from the database
 
-        :param id:
+        :param user_id:
         :return:
         """
         c = self.connection.cursor()
-        c.execute("select team1 from matches where pid1=?", (id,))
+        c.execute("select team1 from matches where pid1=?", (user_id,))
         self.connection.commit()
         first = c.fetchall()
 
-        c.execute("select team2 from matches where pid2=?", (id,))
+        c.execute("select team2 from matches where pid2=?", (user_id,))
         self.connection.commit()
         sec = c.fetchall()
         c.close()
