@@ -8,7 +8,7 @@ An alternative to paper-pencil method for recording results.
 The program is developed on [github.com/MarkusHackspacher/pyfootballmngr](https://github.com/MarkusHackspacher/pyfootballmngr).
 Feedback and contributions are welcome.
 
-Is a fork from (sourceforge.net/p/pyfootballmngr)[http://sourceforge.net/p/pyfootballmngr].
+Is a fork from [sourceforge.net/p/pyfootballmngr](http://sourceforge.net/p/pyfootballmngr).
 
 Install
 -------
