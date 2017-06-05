@@ -2,6 +2,7 @@ pyfootballmngr
 ==============
 
 [![Code Issues](https://www.quantifiedcode.com/api/v1/project/510d01cdfb734c9e96dd65912b38d130/badge.svg)](https://www.quantifiedcode.com/app/project/510d01cdfb734c9e96dd65912b38d130)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/62f5afb25e4e45bcb487c9fde7860b84)](https://www.codacy.com/app/MarkusHackspacher/pyfootballmngr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MarkusHackspacher/pyfootballmngr&amp;utm_campaign=Badge_Grade)
 
 An alternative to paper-pencil method for recording results.
 
