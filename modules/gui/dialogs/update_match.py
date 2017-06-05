@@ -25,10 +25,10 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 import sys
 from os.path import join
 try:
-    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+    from PyQt5 import QtGui, QtCore, QtWidgets
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
-    from PyQt4 import QtGui, QtCore, uic
+    from PyQt4 import QtGui, QtCore
 
 if sys.version_info < (3, 0):
     str = unicode

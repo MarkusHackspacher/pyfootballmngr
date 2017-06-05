@@ -22,10 +22,10 @@
 
 from os.path import join
 try:
-    from PyQt5 import QtGui, QtCore, QtWidgets, uic
+    from PyQt5 import QtGui, QtCore, QtWidgets
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
-    from PyQt4 import QtGui, QtCore, uic
+    from PyQt4 import QtGui, QtCore
 
 
 class PlayerModel(QtCore.QAbstractTableModel):
