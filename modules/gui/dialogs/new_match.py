@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2017> Markus Hackspacher
+Copyright (C) <2012-2023> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -29,9 +29,6 @@ try:
 except ImportError:
     from PyQt4 import QtGui as QtWidgets
     from PyQt4 import QtGui, QtCore
-
-if sys.version_info < (3, 0):
-    str = unicode
 
 
 class DlgNewMatch(QtWidgets.QDialog):

@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2017> Markus Hackspacher
+# Copyright (C) <2012-2023> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -37,9 +37,6 @@ from modules.gui.dialogs.update_player import DlgUpdatePlayer
 from modules.gui.dialogs.new_match import DlgNewMatch
 from modules.gui.dialogs.update_match import DlgUpdateMatch
 from modules.datahandler import Datahandler
-
-if sys.version_info < (3, 0):
-    str = unicode
 
 
 class Main(QtCore.QObject):

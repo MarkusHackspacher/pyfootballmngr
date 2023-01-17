@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2017> Markus Hackspacher
+# Copyright (C) <2012-2023> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -24,9 +24,6 @@ import sys
 import sqlite3
 import datetime
 import itertools
-
-if sys.version_info < (3, 0):
-    str = unicode
 
 
 class Datahandler(object):

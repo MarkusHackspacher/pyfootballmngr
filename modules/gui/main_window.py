@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# coding: utf-8
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2017> Markus Hackspacher
+# Copyright (C) <2012-2023> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
