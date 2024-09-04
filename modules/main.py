@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2023> Markus Hackspacher
+# Copyright (C) <2012-2024> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -309,7 +309,7 @@ class Main(QtCore.QObject):
             self.tr("Fulham"), 0, 2, "2011-11-11")
         self.update_main_users()
 
-    def on_info(self):
+    def on_info(self, test=None):
         """ Programm Info
 
         :return:
@@ -319,11 +319,15 @@ class Main(QtCore.QObject):
             '2012-2015 Markus Hackspacher\n'
             'http://github.com/MarkusHackspacher/pyfootballmngr\n'
             'licence: GNU GPLv3')
-        a = QtWidgets.QMessageBox()
-        a.setWindowTitle(self.tr('Info'))
-        a.setText(text)
-        a.setInformativeText('')
-        a.exec_()
+        infobox = QtWidgets.QMessageBox()
+        infobox.setWindowTitle(self.tr('Info'))
+        infobox.setText(text)
+        infobox.setInformativeText('')
+        if test:
+            infobox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            button = infobox.button(QtWidgets.QMessageBox.Ok)
+            QtCore.QTimer.singleShot(0, button.clicked)
+        infobox.exec_()
 
     @staticmethod
     def onwebsite():

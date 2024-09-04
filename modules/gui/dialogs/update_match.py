@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2023> Markus Hackspacher
+Copyright (C) <2012-2024> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -119,6 +119,6 @@ class DlgUpdateMatch(QtWidgets.QDialog):
         """
         return str(self.data_of_users[self.id1.currentIndex()][0]), \
             str(self.data_of_users[self.id2.currentIndex()][0]), \
-            str(self.team1.text()), str(self.team2.text()),\
+            str(self.team1.text()), str(self.team2.text()), \
             self.goals1.value(), self.goals2.value(), \
             self.calendarWidget.selectedDate().toPyDate()
