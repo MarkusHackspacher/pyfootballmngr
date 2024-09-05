@@ -45,4 +45,4 @@ class TestMain(TestCase):
         super(Main, self).tearDown()
 
     def test_onInfo(self):
-        self.ui.onInfo(True)
+        self.ui.on_Info(True)
