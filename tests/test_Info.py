@@ -35,14 +35,17 @@ class TestMain(TestCase):
 
         # Simple way of making instance a singleton
         super(TestMain, self).setUp()
-        self.app = QApplication([])
+        #self.app = QApplication([])
 
-        self.ui = Main('de')
+        self.app = Main('de')
 
     def tearDown(self):
         """Deletes the reference owned by self"""
         del self.app
-        super(Main, self).tearDown()
+        super(TestMain, self).tearDown()
 
     def test_onInfo(self):
-        self.ui.on_Info(True)
+        self.app.on_info(True)
+
+    def test_on_example_data(self):
+        self.app.on_example_data()
