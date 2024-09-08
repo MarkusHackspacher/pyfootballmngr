@@ -24,8 +24,6 @@
 
 from unittest import TestCase
 
-from PyQt5.QtWidgets import QApplication
-
 from modules.main import Main
 
 
@@ -33,10 +31,7 @@ class TestMain(TestCase):
     def setUp(self):
         """Creates the QApplication instance"""
 
-        # Simple way of making instance a singleton
         super(TestMain, self).setUp()
-        #self.app = QApplication([])
-
         self.app = Main('de')
 
     def tearDown(self):
