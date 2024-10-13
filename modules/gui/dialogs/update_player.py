@@ -23,11 +23,7 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from os.path import join
-try:
-    from PyQt5 import QtGui, QtCore, QtWidgets
-except ImportError:
-    from PyQt4 import QtGui as QtWidgets
-    from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 
 
 class DlgUpdatePlayer(QtWidgets.QDialog):

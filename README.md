@@ -12,9 +12,8 @@ Is a fork from [sourceforge.net/p/pyfootballmngr](http://sourceforge.net/p/pyfoo
 Install
 -------
 
-The program requires [Python 2.7 or 3.x](http://www.python.org/download/) 
-and [Qt4 for Python](http://www.riverbankcomputing.com/software/pyqt/download)
-or [Qt5 for Python](http://www.riverbankcomputing.com/software/pyqt/download5).
+The program requires [Python 3.x](http://www.python.org/download/) 
+and [Qt5 for Python](http://www.riverbankcomputing.com/software/pyqt/download5).
 
     
 Then you copied the source code of the program on your computer,

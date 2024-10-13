@@ -20,22 +20,17 @@
 # You should have received a copy of the GNU General Public License
 # along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
-from os.path import join
 import webbrowser
-try:
-    from PyQt5 import QtCore, QtWidgets
-    print("pyQt5")
-except ImportError:
-    from PyQt4 import QtGui as QtWidgets
-    from PyQt4 import QtCore
-    print("pyQt4")
+from os.path import join
 
-from modules.gui.main_window import WndMain
-from modules.gui.dialogs.new_player import DlgNewPlayer
-from modules.gui.dialogs.update_player import DlgUpdatePlayer
-from modules.gui.dialogs.new_match import DlgNewMatch
-from modules.gui.dialogs.update_match import DlgUpdateMatch
+from PyQt5 import QtCore, QtWidgets
+
 from modules.datahandler import Datahandler
+from modules.gui.dialogs.new_match import DlgNewMatch
+from modules.gui.dialogs.new_player import DlgNewPlayer
+from modules.gui.dialogs.update_match import DlgUpdateMatch
+from modules.gui.dialogs.update_player import DlgUpdatePlayer
+from modules.gui.main_window import WndMain
 
 
 class Main(QtCore.QObject):
@@ -83,7 +78,6 @@ class Main(QtCore.QObject):
         self.main.actionUpdate_Match.triggered.connect(self.update_match)
         self.main.actionRemove_Match.triggered.connect(self.delete_match)
         self.main.actionExampleData.triggered.connect(self.on_example_data)
-        self.main.actionGo_to_the_website.triggered.connect(self.onwebsite)
         self.main.actionAbout.triggered.connect(self.on_info)
         self.main.actionExit.triggered.connect(self.onexit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
@@ -157,7 +151,7 @@ class Main(QtCore.QObject):
         """
         dlg = DlgNewPlayer()
 
-        if dlg.exec_():
+        if dlg.exec():
             user = dlg.get_values()
             self.data_handler.insert_user(user)
         self.update_main_users()
@@ -175,14 +169,14 @@ class Main(QtCore.QObject):
             a = QtWidgets.QMessageBox()
             a.setWindowTitle(self.tr('Info'))
             a.setText(self.tr('no player selected'))
-            a.exec_()
+            a.exec()
             return
 
         player_id = m[row][0]
 
         dlg = DlgUpdatePlayer(m[row][1])
 
-        if dlg.exec_():
+        if dlg.exec():
             user = dlg.get_values()
             self.data_handler.update_user(player_id, user)
 
@@ -201,7 +195,7 @@ class Main(QtCore.QObject):
             a = QtWidgets.QMessageBox()
             a.setWindowTitle(self.tr('Info'))
             a.setText(self.tr('no player selected'))
-            a.exec_()
+            a.exec()
             return
 
         player_id = m[row][0]
@@ -213,7 +207,7 @@ class Main(QtCore.QObject):
             index = QtCore.QModelIndex(
                 self.main.tViewPlayers.model().index(row - 1, 0))
             self.main.tViewPlayers.selectionModel().setCurrentIndex(
-                index, QtWidgets.QItemSelectionModel.SelectCurrent)
+                index, QtCore.QItemSelectionModel.SelectCurrent)
 
     def new_match(self):
         """insert a new match
@@ -222,7 +216,7 @@ class Main(QtCore.QObject):
         """
         dlg = DlgNewMatch(self.data_handler.get_users())
 
-        if dlg.exec_():
+        if dlg.exec():
             id1, id2, team1, team2, goals1, goals2, date = dlg.get_values()
             self.data_handler.insert_match(
                 id1, id2, team1, team2, goals1, goals2, date)
@@ -252,7 +246,7 @@ class Main(QtCore.QObject):
             match_of_users[self.main.lViewMatches.currentRow()][6],
             match_of_users[self.main.lViewMatches.currentRow()][7])
 
-        if dlg.exec_():
+        if dlg.exec():
             id1, id2, team1, team2, goals1, goals2, date = dlg.get_values()
             self.data_handler.update_match(match_of_users[
                 self.main.lViewMatches.currentRow()][0], id1, id2, team1,
@@ -284,29 +278,29 @@ class Main(QtCore.QObject):
 
         :return:
         """
-        self.data_handler.insert_user(self.tr("Isabelle"))
-        self.data_handler.insert_user(self.tr("Max"))
-        self.data_handler.insert_user(self.tr("Emily"))
-        self.data_handler.insert_user(self.tr("Jack"))
-        self.data_handler.insert_user(self.tr("George"))
+        self.data_handler.insert_user("Isabelle")
+        self.data_handler.insert_user("Max")
+        self.data_handler.insert_user("Emily")
+        self.data_handler.insert_user("Jack")
+        self.data_handler.insert_user("George")
         self.data_handler.insert_match(
-            1, 3, self.tr("Manchester City"),
-            self.tr("Chelsea"), 1, 0, "2002-11-08")
+            1, 3, "Manchester City",
+            "Chelsea", 1, 0, "2002-11-08")
         self.data_handler.insert_match(
-            2, 5, self.tr("Manchester Utd"),
-            self.tr("Aston Villa"), 2, 2, "2010-07-09")
+            2, 5, "Manchester Utd",
+            "Aston Villa", 2, 2, "2010-07-09")
         self.data_handler.insert_match(
-            4, 3, self.tr("Chelsea"),
-            self.tr("Tottenham"), 1, 4, "2008-01-24")
+            4, 3, "Chelsea",
+            "Tottenham", 1, 4, "2008-01-24")
         self.data_handler.insert_match(
-            3, 5, self.tr("Arsenal"),
-            self.tr("Liverpool"), 0, 2, "2011-06-15")
+            3, 5, "Arsenal",
+            "Liverpool", 0, 2, "2011-06-15")
         self.data_handler.insert_match(
-            5, 1, self.tr("Arsenal"),
-            self.tr("Manchester Utd"), 4, 4, "2001-12-01")
+            5, 1, "Arsenal",
+            "Manchester Utd", 4, 4, "2001-12-01")
         self.data_handler.insert_match(
-            4, 2, self.tr("Manchester City"),
-            self.tr("Fulham"), 0, 2, "2011-11-11")
+            4, 2, "Manchester City",
+            "Fulham", 0, 2, "2011-11-11")
         self.update_main_users()
 
     def on_info(self, test=None):
@@ -316,18 +310,20 @@ class Main(QtCore.QObject):
         """
         text = self.tr(
             'an alternative to paper-pencil method for recording results.\n'
-            '2012-2015 Markus Hackspacher\n'
-            'http://github.com/MarkusHackspacher/pyfootballmngr\n'
+            '2012-2024 Markus Hackspacher\n'
             'licence: GNU GPLv3')
         infobox = QtWidgets.QMessageBox()
         infobox.setWindowTitle(self.tr('Info'))
         infobox.setText(text)
-        infobox.setInformativeText('')
+        infobox.setInformativeText('http://github.com/MarkusHackspacher/pyfootballmngr')
+        infobox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        websideButton = infobox.addButton(self.tr('Website pyfootballmngr'), QtWidgets.QMessageBox.ActionRole)
         if test:
-            infobox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             button = infobox.button(QtWidgets.QMessageBox.Ok)
             QtCore.QTimer.singleShot(0, button.clicked)
-        infobox.exec_()
+        infobox.exec()
+        if infobox.clickedButton() == websideButton:
+            self.onwebsite()
 
     @staticmethod
     def onwebsite():
@@ -351,4 +347,4 @@ class Main(QtCore.QObject):
 
         :return:
         """
-        self.app.exec_()
+        self.app.exec()

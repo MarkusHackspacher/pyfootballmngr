@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2023> Markus Hackspacher
+# Copyright (C) <2012-2024> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -21,11 +21,8 @@
 # along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
 from os.path import join
-try:
-    from PyQt5 import QtGui, QtCore, QtWidgets
-except ImportError:
-    from PyQt4 import QtGui as QtWidgets
-    from PyQt4 import QtGui, QtCore
+
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class PlayerModel(QtCore.QAbstractTableModel):
@@ -181,7 +178,6 @@ class WndMain(QtWidgets.QMainWindow):
         self.actionUpdate_Match = QtWidgets.QAction(self)
         self.actionRemove_Match = QtWidgets.QAction(self)
         self.actionExampleData = QtWidgets.QAction(self)
-        self.actionGo_to_the_website = QtWidgets.QAction(self)
         self.actionAbout = QtWidgets.QAction(self)
         self.actionExit = QtWidgets.QAction(self)
 
@@ -204,7 +200,6 @@ class WndMain(QtWidgets.QMainWindow):
         self.menu_help = QtWidgets.QMenu(self.menubar)
         self.menu_help.setTitle(self.tr("Help"))
 
-        self.menu_help.addAction(self.actionGo_to_the_website)
         self.menu_help.addAction(self.actionAbout)
         self.menubar.addAction(self.menu_help.menuAction())
 
@@ -227,7 +222,6 @@ class WndMain(QtWidgets.QMainWindow):
         self.actionUpdate_Match.setText(self.tr("Update match"))
         self.actionRemove_Match.setText(self.tr("Remove match"))
         self.actionExampleData.setText(self.tr("Load example data"))
-        self.actionGo_to_the_website.setText(self.tr("Go to the website"))
         self.actionAbout.setText(self.tr("About"))
         self.actionExit.setText(self.tr("Exit"))
 

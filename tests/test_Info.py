@@ -43,4 +43,4 @@ class TestMain(TestCase):
         self.app.on_info(True)
 
     def test_on_example_data(self):
-        self.app.on_example_data()
+        self.app.on_example_data()   
