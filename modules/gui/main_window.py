@@ -22,8 +22,14 @@
 
 from os.path import join
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-
+try:
+    from PyQt6 import QtCore, QtGui, QtWidgets
+    from PyQt6.QtGui import QAction
+    from PyQt6.QtWidgets import QSizePolicy
+except ImportError:
+    from PyQt5 import QtCore, QtGui, QtWidgets
+    from PyQt5.QtWidgets import QAction
+    from PyQt5.QtWidgets.QSizePolicy import SizeHint
 
 class PlayerModel(QtCore.QAbstractTableModel):
     """
@@ -65,7 +71,7 @@ class PlayerModel(QtCore.QAbstractTableModel):
             1: self.tr("Username"),
             2: self.tr("Reg. Date"),
         }
-        if Qt_Orientation == QtCore.Qt.Horizontal and int_role == 0:
+        if Qt_Orientation == QtCore.Qt.Orientation.Horizontal and int_role == 0:
             return headers[p_int]
 
     def columnCount(self, QModelIndex_parent=None, *args, **kwargs):
@@ -90,7 +96,7 @@ class PlayerModel(QtCore.QAbstractTableModel):
         """
         if not QModelIndex.isValid():
             return None
-        elif int_role != QtCore.Qt.DisplayRole:
+        elif int_role != QtCore.Qt.ItemDataRole.DisplayRole:
             return None
         return self.data[QModelIndex.row()][QModelIndex.column()]
 
@@ -111,8 +117,8 @@ class WndMain(QtWidgets.QMainWindow):
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
 
         self.gbPlayers = QtWidgets.QGroupBox(self.centralwidget)
-        size_policy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        size_policy = QSizePolicy(QSizePolicy.Policy.Preferred,
+                                  QSizePolicy.Policy.Preferred)
         size_policy.setHorizontalStretch(2)
         size_policy.setVerticalStretch(0)
         size_policy.setHeightForWidth(
@@ -121,18 +127,18 @@ class WndMain(QtWidgets.QMainWindow):
 
         self.tViewPlayers = QtWidgets.QTableView(self.gbPlayers)
         self.tViewPlayers.setSelectionMode(
-            QtWidgets.QAbstractItemView.SingleSelection)
+            QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
         self.tViewPlayers.setSelectionBehavior(
-            QtWidgets.QAbstractItemView.SelectRows)
-        self.tViewPlayers.setGridStyle(QtCore.Qt.SolidLine)
+            QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
+        self.tViewPlayers.setGridStyle(QtCore.Qt.PenStyle.SolidLine)
 
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.gbPlayers)
         self.verticalLayout_2.addWidget(self.tViewPlayers)
 
         self.gridLayout.addWidget(self.gbPlayers, 0, 0, 2, 1)
         self.gbLastMatches = QtWidgets.QGroupBox(self.centralwidget)
-        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
-                                            QtWidgets.QSizePolicy.Preferred)
+        size_policy = QSizePolicy(QSizePolicy.Policy.Preferred,
+                                  QSizePolicy.Policy.Preferred)
         size_policy.setHorizontalStretch(1)
         size_policy.setVerticalStretch(0)
         size_policy.setHeightForWidth(
@@ -145,8 +151,8 @@ class WndMain(QtWidgets.QMainWindow):
         self.verticalLayout_3.addWidget(self.lViewMatches)
         self.gridLayout.addWidget(self.gbLastMatches, 0, 1, 1, 2)
         self.gbPlayerInfo = QtWidgets.QGroupBox(self.centralwidget)
-        size_policy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred,
-                                            QtWidgets.QSizePolicy.Preferred)
+        size_policy = QSizePolicy(QSizePolicy.Policy.Preferred,
+                                  QSizePolicy.Policy.Preferred)
         size_policy.setHorizontalStretch(1)
         size_policy.setVerticalStretch(0)
         size_policy.setHeightForWidth(
@@ -171,15 +177,15 @@ class WndMain(QtWidgets.QMainWindow):
         self.menubar.setGeometry(QtCore.QRect(0, 0, 747, 21))
 
         self.setMenuBar(self.menubar)
-        self.actionAdd_Player = QtWidgets.QAction(self)
-        self.actionUpdate_Player = QtWidgets.QAction(self)
-        self.actionRemove_Player = QtWidgets.QAction(self)
-        self.actionAdd_Match = QtWidgets.QAction(self)
-        self.actionUpdate_Match = QtWidgets.QAction(self)
-        self.actionRemove_Match = QtWidgets.QAction(self)
-        self.actionExampleData = QtWidgets.QAction(self)
-        self.actionAbout = QtWidgets.QAction(self)
-        self.actionExit = QtWidgets.QAction(self)
+        self.actionAdd_Player = QAction(self)
+        self.actionUpdate_Player = QAction(self)
+        self.actionRemove_Player = QAction(self)
+        self.actionAdd_Match = QAction(self)
+        self.actionUpdate_Match = QAction(self)
+        self.actionRemove_Match = QAction(self)
+        self.actionExampleData = QAction(self)
+        self.actionAbout = QAction(self)
+        self.actionExit = QAction(self)
 
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setTitle(self.tr("File"))
@@ -205,10 +211,10 @@ class WndMain(QtWidgets.QMainWindow):
 
         try:
             self.tViewPlayers.horizontalHeader().setResizeMode(
-                QtGui.QHeaderView.Stretch)
+                QtGui.QHeaderView.ResizeMode.Stretch)
         except AttributeError:
             self.tViewPlayers.horizontalHeader().setSectionResizeMode(
-                QtWidgets.QHeaderView.Stretch)
+                QtWidgets.QHeaderView.ResizeMode.Stretch)
 
         self.setWindowTitle(self.tr("Football statistics manager"))
         self.gbPlayers.setTitle(self.tr("Players"))
