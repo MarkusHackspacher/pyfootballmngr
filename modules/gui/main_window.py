@@ -29,7 +29,8 @@ try:
 except ImportError:
     from PyQt5 import QtCore, QtGui, QtWidgets
     from PyQt5.QtWidgets import QAction
-    from PyQt5.QtWidgets.QSizePolicy import SizeHint
+    from PyQt5.QtWidgets import QSizePolicy
+
 
 class PlayerModel(QtCore.QAbstractTableModel):
     """
