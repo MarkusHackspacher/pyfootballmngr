@@ -23,7 +23,10 @@
 import webbrowser
 from os.path import join
 
-from PyQt5 import QtCore, QtWidgets
+try:
+    from PyQt6 import QtCore, QtWidgets
+except ImportError:
+    from PyQt5 import QtCore, QtWidgets
 
 from modules.datahandler import Datahandler
 from modules.gui.dialogs.new_match import DlgNewMatch
@@ -207,7 +210,7 @@ class Main(QtCore.QObject):
             index = QtCore.QModelIndex(
                 self.main.tViewPlayers.model().index(row - 1, 0))
             self.main.tViewPlayers.selectionModel().setCurrentIndex(
-                index, QtCore.QItemSelectionModel.SelectCurrent)
+                index, QtCore.QItemSelectionModel.SelectionFlag.SelectCurrent)
 
     def new_match(self):
         """insert a new match
@@ -316,10 +319,11 @@ class Main(QtCore.QObject):
         infobox.setWindowTitle(self.tr('Info'))
         infobox.setText(text)
         infobox.setInformativeText('http://github.com/MarkusHackspacher/pyfootballmngr')
-        infobox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        websideButton = infobox.addButton(self.tr('Website pyfootballmngr'), QtWidgets.QMessageBox.ActionRole)
+        infobox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        websideButton = infobox.addButton(self.tr('Website pyfootballmngr'),
+                                          QtWidgets.QMessageBox.ButtonRole.ActionRole)
         if test:
-            button = infobox.button(QtWidgets.QMessageBox.Ok)
+            button = infobox.button(QtWidgets.QMessageBox.StandardButton.Ok)
             QtCore.QTimer.singleShot(0, button.clicked)
         infobox.exec()
         if infobox.clickedButton() == websideButton:

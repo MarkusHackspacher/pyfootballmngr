@@ -24,7 +24,10 @@ along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
 from os.path import join
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+try:
+    from PyQt6 import QtCore, QtGui, QtWidgets
+except ImportError:
+    from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class DlgNewPlayer(QtWidgets.QDialog):
@@ -40,15 +43,15 @@ class DlgNewPlayer(QtWidgets.QDialog):
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)
         self.buttonBox = QtWidgets.QDialogButtonBox(self)
-        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel |
-                                          QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel |
+                                          QtWidgets.QDialogButtonBox.StandardButton.Ok)
 
         self.txtName = QtWidgets.QLineEdit(self)
         self.label = QtWidgets.QLabel(self)
 
         self.boxLayout = QtWidgets.QBoxLayout(
-            QtWidgets.QBoxLayout.TopToBottom, self)
+            QtWidgets.QBoxLayout.Direction.TopToBottom, self)
 
         grid_layout = QtWidgets.QGridLayout()
         grid_layout.addWidget(self.label, 0, 0, 1, 1)
