@@ -4,7 +4,7 @@
 """
 pyfootballmngr
 
-Copyright (C) <2012-2024> Markus Hackspacher
+Copyright (C) <2012-2026> Markus Hackspacher
 
 This file is part of pyfootballmngr.
 
@@ -42,31 +42,31 @@ class DlgNewPlayer(QtWidgets.QDialog):
         QtWidgets.QDialog.__init__(self)
         self.setWindowIcon(QtGui.QIcon(join("misc", "icon.ico")))
         self.setModal(True)
-        self.buttonBox = QtWidgets.QDialogButtonBox(self)
-        self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel |
-                                          QtWidgets.QDialogButtonBox.StandardButton.Ok)
+        self.button_box = QtWidgets.QDialogButtonBox(self)
+        self.button_box.setOrientation(QtCore.Qt.Orientation.Horizontal)
+        self.button_box.setStandardButtons(QtWidgets.QDialogButtonBox.StandardButton.Cancel |
+                                           QtWidgets.QDialogButtonBox.StandardButton.Ok)
 
-        self.txtName = QtWidgets.QLineEdit(self)
+        self.text_name = QtWidgets.QLineEdit(self)
         self.label = QtWidgets.QLabel(self)
 
-        self.boxLayout = QtWidgets.QBoxLayout(
+        self.box_layout = QtWidgets.QBoxLayout(
             QtWidgets.QBoxLayout.Direction.TopToBottom, self)
 
         grid_layout = QtWidgets.QGridLayout()
         grid_layout.addWidget(self.label, 0, 0, 1, 1)
-        grid_layout.addWidget(self.txtName, 0, 1, 1, 1)
+        grid_layout.addWidget(self.text_name, 0, 1, 1, 1)
 
-        self.boxLayout.addLayout(grid_layout)
-        self.boxLayout.addWidget(self.buttonBox)
+        self.box_layout.addLayout(grid_layout)
+        self.box_layout.addWidget(self.button_box)
 
         self.label.setText(self.tr("Player"))
         self.setWindowTitle(self.tr("New Player Dialog"))
-        self.txtName.setFocus()
+        self.text_name.setFocus()
 
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.close)
+        self.button_box.accepted.connect(self.accept)
+        self.button_box.rejected.connect(self.close)
 
     def get_values(self):
         """return new playername in unicode"""
-        return str(self.txtName.text())
+        return str(self.text_name.text())

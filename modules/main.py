@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2024> Markus Hackspacher
+# Copyright (C) <2012-2026> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -320,13 +320,13 @@ class Main(QtCore.QObject):
         infobox.setText(text)
         infobox.setInformativeText('http://github.com/MarkusHackspacher/pyfootballmngr')
         infobox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-        websideButton = infobox.addButton(self.tr('Website pyfootballmngr'),
+        webside_button = infobox.addButton(self.tr('Website pyfootballmngr'),
                                           QtWidgets.QMessageBox.ButtonRole.ActionRole)
         if test:
             button = infobox.button(QtWidgets.QMessageBox.StandardButton.Ok)
             QtCore.QTimer.singleShot(0, button.clicked)
         infobox.exec()
-        if infobox.clickedButton() == websideButton:
+        if infobox.clickedButton() == webside_button:
             self.onwebsite()
 
     @staticmethod

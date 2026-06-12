@@ -2,7 +2,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2024> Markus Hackspacher
+# Copyright (C) <2024-2026> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -19,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pyfootballmngr.  If not, see <http://www.gnu.org/licenses/>.
 
-"""Test the dialog module LottoSimuDialog
+"""Test the dialog module
 """
 
 from unittest import TestCase
@@ -39,7 +39,7 @@ class TestMain(TestCase):
         del self.app
         super(TestMain, self).tearDown()
 
-    def test_onInfo(self):
+    def test_on_info(self):
         self.app.on_info(True)
 
     def test_on_example_data(self):
