@@ -74,15 +74,15 @@ class Main(QtCore.QObject):
 
     def connect_slots(self):
         """Slots"""
-        self.main.actionAdd_Player.triggered.connect(self.new_player)
-        self.main.actionUpdate_Player.triggered.connect(self.update_player)
-        self.main.actionRemove_Player.triggered.connect(self.delete_player)
-        self.main.actionAdd_Match.triggered.connect(self.new_match)
-        self.main.actionUpdate_Match.triggered.connect(self.update_match)
-        self.main.actionRemove_Match.triggered.connect(self.delete_match)
-        self.main.actionExampleData.triggered.connect(self.on_example_data)
-        self.main.actionAbout.triggered.connect(self.on_info)
-        self.main.actionExit.triggered.connect(self.onexit)
+        self.main.action_add_player.triggered.connect(self.new_player)
+        self.main.action_update_player.triggered.connect(self.update_player)
+        self.main.action_remove_player.triggered.connect(self.delete_player)
+        self.main.action_add_match.triggered.connect(self.new_match)
+        self.main.action_update_match.triggered.connect(self.update_match)
+        self.main.action_remove_match.triggered.connect(self.delete_match)
+        self.main.action_example_data.triggered.connect(self.on_example_data)
+        self.main.action_about.triggered.connect(self.on_info)
+        self.main.action_exit.triggered.connect(self.onexit)
         self.main.tViewPlayers.clicked.connect(self.player_selected)
         self.main.lViewMatches.clicked.connect(self.match_selected)
 
@@ -101,13 +101,13 @@ class Main(QtCore.QObject):
         :return:
         """
         try:
-            m = self.main.tViewPlayers.model().data
+            model = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
             match_id = None
         else:
-            match_id = m[row][0]
+            match_id = model[row][0]
 
         match_of_users = self.data_handler.get_matches(match_id)
         text = str("{0} - {1}  {2}").format(
@@ -165,7 +165,7 @@ class Main(QtCore.QObject):
         :return:
         """
         try:
-            m = self.main.tViewPlayers.model().data
+            model = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
@@ -175,9 +175,9 @@ class Main(QtCore.QObject):
             a.exec()
             return
 
-        player_id = m[row][0]
+        player_id = model[row][0]
 
-        dlg = DlgUpdatePlayer(m[row][1])
+        dlg = DlgUpdatePlayer(model[row][1])
 
         if dlg.exec():
             user = dlg.get_values()
@@ -191,7 +191,7 @@ class Main(QtCore.QObject):
         :return:
         """
         try:
-            m = self.main.tViewPlayers.model().data
+            model = self.main.tViewPlayers.model().data
             row = self.main.tViewPlayers.selectionModel().selectedIndexes(
                 )[0].row()
         except Exception:
@@ -201,7 +201,7 @@ class Main(QtCore.QObject):
             a.exec()
             return
 
-        player_id = m[row][0]
+        player_id = model[row][0]
         self.data_handler.delete_user(player_id)
 
         self.update_main_users()

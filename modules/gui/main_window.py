@@ -3,7 +3,7 @@
 
 # pyfootballmngr
 
-# Copyright (C) <2012-2024> Markus Hackspacher
+# Copyright (C) <2012-2026> Markus Hackspacher
 
 # This file is part of pyfootballmngr.
 
@@ -178,36 +178,36 @@ class WndMain(QtWidgets.QMainWindow):
         self.menubar.setGeometry(QtCore.QRect(0, 0, 747, 21))
 
         self.setMenuBar(self.menubar)
-        self.actionAdd_Player = QAction(self)
-        self.actionUpdate_Player = QAction(self)
-        self.actionRemove_Player = QAction(self)
-        self.actionAdd_Match = QAction(self)
-        self.actionUpdate_Match = QAction(self)
-        self.actionRemove_Match = QAction(self)
-        self.actionExampleData = QAction(self)
-        self.actionAbout = QAction(self)
-        self.actionExit = QAction(self)
+        self.action_add_player = QAction(self)
+        self.action_update_player = QAction(self)
+        self.action_remove_player = QAction(self)
+        self.action_add_match = QAction(self)
+        self.action_update_match = QAction(self)
+        self.action_remove_match = QAction(self)
+        self.action_example_data = QAction(self)
+        self.action_about = QAction(self)
+        self.action_exit = QAction(self)
 
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setTitle(self.tr("File"))
 
-        self.menuFile.addAction(self.actionAdd_Player)
-        self.menuFile.addAction(self.actionUpdate_Player)
-        self.menuFile.addAction(self.actionRemove_Player)
+        self.menuFile.addAction(self.action_add_player)
+        self.menuFile.addAction(self.action_update_player)
+        self.menuFile.addAction(self.action_remove_player)
         self.menuFile.addSeparator()
-        self.menuFile.addAction(self.actionAdd_Match)
-        self.menuFile.addAction(self.actionUpdate_Match)
-        self.menuFile.addAction(self.actionRemove_Match)
+        self.menuFile.addAction(self.action_add_match)
+        self.menuFile.addAction(self.action_update_match)
+        self.menuFile.addAction(self.action_remove_match)
         self.menuFile.addSeparator()
-        self.menuFile.addAction(self.actionExampleData)
+        self.menuFile.addAction(self.action_example_data)
         self.menuFile.addSeparator()
-        self.menuFile.addAction(self.actionExit)
+        self.menuFile.addAction(self.action_exit)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.menu_help = QtWidgets.QMenu(self.menubar)
         self.menu_help.setTitle(self.tr("Help"))
 
-        self.menu_help.addAction(self.actionAbout)
+        self.menu_help.addAction(self.action_about)
         self.menubar.addAction(self.menu_help.menuAction())
 
         try:
@@ -222,18 +222,18 @@ class WndMain(QtWidgets.QMainWindow):
         self.gbLastMatches.setTitle(self.tr("Last matches"))
         self.gbPlayerInfo.setTitle(self.tr("Information"))
 
-        self.actionAdd_Player.setText(self.tr("Add player"))
-        self.actionUpdate_Player.setText(self.tr("Update player"))
-        self.actionRemove_Player.setText(self.tr("Remove player"))
-        self.actionAdd_Match.setText(self.tr("Add match"))
-        self.actionUpdate_Match.setText(self.tr("Update match"))
-        self.actionRemove_Match.setText(self.tr("Remove match"))
-        self.actionExampleData.setText(self.tr("Load example data"))
-        self.actionAbout.setText(self.tr("About"))
-        self.actionExit.setText(self.tr("Exit"))
+        self.action_add_player.setText(self.tr("Add player"))
+        self.action_update_player.setText(self.tr("Update player"))
+        self.action_remove_player.setText(self.tr("Remove player"))
+        self.action_add_match.setText(self.tr("Add match"))
+        self.action_update_match.setText(self.tr("Update match"))
+        self.action_remove_match.setText(self.tr("Remove match"))
+        self.action_example_data.setText(self.tr("Load example data"))
+        self.action_about.setText(self.tr("About"))
+        self.action_exit.setText(self.tr("Exit"))
 
-        self.actionAdd_Player.setShortcut("Ctrl+N")
-        self.actionRemove_Player.setShortcut("Del")
+        self.action_add_player.setShortcut("Ctrl+N")
+        self.action_remove_player.setShortcut("Del")
 
     def update_users(self, users):
         """

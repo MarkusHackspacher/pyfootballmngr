@@ -46,7 +46,8 @@ class DlgUpdatePlayer(QtWidgets.QDialog):
         self.buttonBox = QtWidgets.QDialogButtonBox(self)
         self.buttonBox.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.buttonBox.setStandardButtons(
-            QtWidgets.QDialogButtonBox.StandardButton.Cancel | QtWidgets.QDialogButtonBox.StandardButton.Ok)
+            QtWidgets.QDialogButtonBox.StandardButton.Cancel |
+            QtWidgets.QDialogButtonBox.StandardButton.Ok)
 
         self.txtName = QtWidgets.QLineEdit(self)
         self.label = QtWidgets.QLabel(self)
