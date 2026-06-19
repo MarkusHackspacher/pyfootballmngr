@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# pyfootballmngr
+"""main class pyfootballmngr"""
 
 # Copyright (C) <2012-2026> Markus Hackspacher
 
