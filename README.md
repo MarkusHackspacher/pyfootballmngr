@@ -11,7 +11,7 @@ Install
 -------
 
 The program requires [Python 3.x](http://www.python.org/download/) 
-and [Qt5 for Python](http://www.riverbankcomputing.com/software/pyqt/download5).
+and Qt6 for Python.
 
     
 Then you copied the source code of the program on your computer,
